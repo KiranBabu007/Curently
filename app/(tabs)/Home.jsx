@@ -26,10 +26,8 @@ const Home = () => {
 
     const addDataToFirestore = async (data) => {
         try {
-            const currentDate = new Date(); // Get current date and time
-        const month = currentDate.getMonth() + 1; // Get month (0-indexed, hence the +1)
-        const day = currentDate.getDate(); // Get day of the month
-        const formattedDate = `${month} ${day}`;
+          const currentDate = new Date(); // Get current date and time
+          const formattedDate = currentDate.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
             const docRef = await addDoc(collectionRef, {
                 current: data.current,
                 energy: data.KWH, // Assuming energy data is retrieved from Realtime Database
