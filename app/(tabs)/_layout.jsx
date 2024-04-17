@@ -29,7 +29,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="Billcalc"
         options={{
-          title: 'Bill',
+          title: 'Bill Calculation',
           tabBarIcon: ({ color }) => <FontAwesome size={28} name="calculator" color={color} />,
         }}
       />
