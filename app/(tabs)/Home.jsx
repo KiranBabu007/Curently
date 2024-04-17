@@ -4,6 +4,9 @@ import { collection, addDoc, Timestamp } from 'firebase/firestore';
 import { app, database, firestore } from '../../firebaseConfig';
 import { ref, onValue } from 'firebase/database';
 
+
+
+
 const Home = () => {
   const [currentValue, setCurrentValue] = useState('');
   const collectionRef = collection(firestore, 'values');
