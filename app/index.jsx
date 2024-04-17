@@ -7,6 +7,8 @@ export default function App() {
     <View className="flex-1 items-center justify-center ">
       <StatusBar />
       <Link href="/Home">Go to home</Link>
+      <Link href="/sign-in">Go to SignIn</Link>
+      <Link href="/sign-up">Go to SignUp</Link>
     </View>
   );
 }
