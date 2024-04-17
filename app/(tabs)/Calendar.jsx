@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const Plans = () => {
+const Calendar = () => {
   return (
     <View>
       <Text>Plans</Text>
@@ -9,4 +9,4 @@ const Plans = () => {
   )
 }
 
-export default Plans
+export default Calendar
