@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Alert, Button, Image, Pressable, SafeAreaView, StyleSheet, Switch, Text, TextInput, View } from 'react-native'
 import { getAuth,signInWithEmailAndPassword } from 'firebase/auth';
 import { app } from '../../firebaseConfig';
+import LottieView from 'lottie-react-native';
+
 const Signin = () => {
     const auth = getAuth();
     const [email, setEmail] = useState("");
@@ -27,7 +29,14 @@ const Signin = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      
+         <LottieView
+                source={require('../../assets/Animation - 1712257000816.json')}
+                speed={0.5}
+                autoPlay
+                loop
+                
+    style={{ width: 200, height: 200 }}
+            />
         <Text style={styles.title}>Login</Text>
         <View style={styles.inputView}>
           <TextInput
