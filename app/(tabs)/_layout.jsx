@@ -13,10 +13,10 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="Plans"
+        name="Calendar"
         options={{
-          title: 'Plans',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="bolt" color={color} />,
+          title: 'Calendar',
+          tabBarIcon: ({ color }) => <FontAwesome size={28} name="calendar" color={color} />,
         }}
       />
       <Tabs.Screen
