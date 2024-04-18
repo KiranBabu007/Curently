@@ -96,7 +96,7 @@ const FormPage = () => {
         <Text style={styles.inputLabel}>Consumed Units</Text>
         <TextInput
           style={styles.input}
-          value={unitsConsumed}
+          value={unitsConsumed.toString()}
           onChangeText={setUnitsConsumed}
           keyboardType="numeric"
           editable={!consumed}
