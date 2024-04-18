@@ -105,8 +105,7 @@ const Plans = () => {
 
 const styles = StyleSheet.create({
   outerContainer: {
-    borderColor: 'blue',
-    borderWidth: 2,
+    
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 20, // Add side padding
