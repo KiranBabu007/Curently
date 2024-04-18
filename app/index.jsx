@@ -1,16 +1,15 @@
-
 import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { View, Text } from 'react-native'; // Remove 'Video' import
+import { View, Text, StyleSheet } from 'react-native'; // Import StyleSheet
 import { Link } from 'expo-router';
-import { Video } from 'expo-av'; // Keep 'Video' import from 'expo-av'
+import { Video } from 'expo-av';
+import LottieView from 'lottie-react-native';
 
-// Splash screen component with a video
 const SplashScreen = () => (
-  <View className="flex-1 items-center justify-center bg-black">
+  <View style={styles.container}>
     <StatusBar style="auto" />
     <Video
-      source={require('../assets/splash.mp4')} // Replace with the path to your video
+      source={require('../assets/splash.mp4')}
       style={{ width: '100%', height: '100%' }}
       resizeMode="contain"
       isLooping
@@ -19,33 +18,71 @@ const SplashScreen = () => (
   </View>
 );
 
-
-export default function App() {
+const App = () => {
   const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
-    // Simulate loading for 2 seconds
     const timer = setTimeout(() => {
-      setShowSplash(false); // Hide splash screen after 2 seconds
+      setShowSplash(false);
     }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
 
   return (
-
     <>
       {showSplash ? (
         <SplashScreen />
       ) : (
-        <View className="flex-1 items-center justify-center">
+        <View style={styles.container2}>
           <StatusBar style="auto" />
-          <Link href="/Home">Go to home</Link>
-          <Link href="/sign-in">Go to SignIn</Link>
-          <Link href="/sign-up">Go to SignUp</Link>
+          <LottieView
+            source={require('../assets/Animation - 1713405309153.json')}
+            speed={0.5}
+            autoPlay
+            loop
+            style={{ width: 200, height: 200 }}
+          />
+          <View style={styles.buttonsContainer}>
+            <Link href="/sign-in" style={styles.button}>Sign In</Link>
+            <Link href="/sign-up" style={styles.button}>Sign Up</Link>
+          </View>
         </View>
       )}
     </>
   );
 }
 
+// Define styles
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'black',
+  },
+  container2: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+    marginTop: 40,
+    paddingTop:80,
+  },
+  button: {
+    marginHorizontal: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: 'black',
+    borderRadius: 5,
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+});
+
+export default App;
