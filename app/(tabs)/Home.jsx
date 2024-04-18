@@ -8,6 +8,7 @@ import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import { multiFactor } from 'firebase/auth';
 
+
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
@@ -15,6 +16,7 @@ Notifications.setNotificationHandler({
     shouldSetBadge: false,
   }),
 });
+
 
 
 const Home = () => {
