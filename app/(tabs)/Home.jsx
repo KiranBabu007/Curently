@@ -128,7 +128,7 @@ const Home = () => {
           </View>
         </View>
       </View>
-      {/* Tab selector goes here */}
+    
     </ScrollView>
   );
 };
