@@ -7,8 +7,10 @@ import { ref, onValue } from 'firebase/database';
 
 
 
+
 const Home = () => {
   const [currentValue, setCurrentValue] = useState('');
+  const [setPower,power]=useState('');
   const collectionRef = collection(firestore, 'values');
 
   useEffect(() => {
@@ -17,6 +19,7 @@ const Home = () => {
       const data = snapshot.val();
       if (data) {
         setCurrentValue(data.current);
+        setPower(data.power);
         addDataToFirestore(data);
       }
     });
@@ -58,9 +61,9 @@ const Home = () => {
       <View style={styles.cardContainer}>
         <View style={styles.card}>
           <View style={styles.cardContent}>
-            <Text style={styles.cardText}>Consumption:</Text>
+            <Text style={styles.cardText}>Power Consumption:</Text>
             <View style={styles.outputBox}>
-              <Text style={styles.outputText}>{currentValue} A</Text>
+              <Text style={styles.outputText}>{power} A</Text>
             </View>
           </View>
         </View>
@@ -73,7 +76,7 @@ const Home = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#f9fcff',
   },
   text: {
     textAlign: 'center',
@@ -125,7 +128,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   outputBox: {
-    backgroundColor: 'white',
+    backgroundColor: '#f2f2f2',
     padding: 10,
     borderRadius: 5,
   },
