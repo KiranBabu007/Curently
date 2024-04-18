@@ -33,6 +33,13 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <FontAwesome size={28} name="calculator" color={color} />,
         }}
       />
+      <Tabs.Screen
+        name="noty"
+        options={{
+          title: 'Notification',
+          tabBarIcon: ({ color }) => <FontAwesome size={28} name="bell" color={color} />,
+        }}
+      />
     </Tabs>
     
   );

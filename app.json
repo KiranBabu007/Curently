@@ -1,8 +1,8 @@
 {
   "expo": {
     "name": "Curently",
-    "scheme":"Curently",
-    "slug": "Curently",
+    "scheme": "Curently",
+    "slug": "curently",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -29,6 +29,15 @@
     },
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "aaa3626b-f36a-45a9-95d9-c1d2029e7e5b"
+      }
+    },
+    "owner": "kiran07x"
   }
 }
