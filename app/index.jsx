@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { View, Text, StyleSheet } from 'react-native'; // Import StyleSheet
+import { StatusBar, ImageBackground } from 'react-native'; // Import ImageBackground
+import { View, Text, StyleSheet, Image } from 'react-native'; // Import StyleSheet and Image
 import { Link } from 'expo-router';
 import { Video } from 'expo-av';
 import LottieView from 'lottie-react-native';
@@ -34,20 +34,25 @@ const App = () => {
       {showSplash ? (
         <SplashScreen />
       ) : (
-        <View style={styles.container2}>
-          <StatusBar style="auto" />
-          <LottieView
-            source={require('../assets/Animation - 1713405309153.json')}
-            speed={0.5}
-            autoPlay
-            loop
-            style={{ width: 200, height: 200 }}
-          />
-          <View style={styles.buttonsContainer}>
-            <Link href="/sign-in" style={styles.button}>Sign In</Link>
-            <Link href="/sign-up" style={styles.button}>Sign Up</Link>
+        <ImageBackground // Use ImageBackground for the page background
+          source={require('../assets/Welcome.jpg')} // Provide the image source
+          style={styles.background} // Apply background image style
+        >
+          <View style={styles.container2}>
+            <StatusBar style="auto" />
+
+            <View className="mt-20">
+              <Text className="text-5xl font-bold mb-5 ">Curently</Text>
+              <Text className= " font-light text-xl">     Think Act Save</Text>
+            </View>
+            
+            
+            <View style={styles.buttonsContainer}>
+              <Link href="/sign-in" style={styles.button}>Sign In</Link>
+              <Link href="/sign-up" style={styles.button}>Sign Up</Link>
+            </View>
           </View>
-        </View>
+        </ImageBackground>
       )}
     </>
   );
@@ -64,21 +69,28 @@ const styles = StyleSheet.create({
   container2: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'flex-end',
+    backgroundColor: 'transparent',
+    paddingBottom:70 // Make the background transparent to show the ImageBackground
+  },
+  background: {
+    flex: 1,
+    resizeMode: 'cover', // Cover the entire screen
     justifyContent: 'center',
-    backgroundColor: 'white',
   },
   buttonsContainer: {
+    gap:20,
     flexDirection: 'row',
     marginTop: 40,
-    paddingTop:80,
+    paddingTop: 80,
   },
   button: {
     marginHorizontal: 10,
     paddingVertical: 10,
     paddingHorizontal: 20,
-    backgroundColor: 'black',
+    backgroundColor: 'white',
     borderRadius: 5,
-    color: 'white',
+    color: 'black',
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
