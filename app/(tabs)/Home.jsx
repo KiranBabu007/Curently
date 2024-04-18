@@ -5,9 +5,6 @@ import { app, database, firestore } from '../../firebaseConfig';
 import { ref, onValue } from 'firebase/database';
 import emailjs from '@emailjs/browser'
 
-
-
-
 const Home = () => {
   const [currentValue, setCurrentValue] = useState('');
   const [setPower,power]=useState('');
