@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { firestore } from '../../firebaseConfig';
 import { doc,updateDoc } from 'firebase/firestore';
@@ -7,15 +7,43 @@ const Plans = () => {
   const [selectedMinute, setSelectedMinute] = useState(50);
   const [price, setPrice] = useState(0); // State for the price
 
-  const handleIncrement = () => {
-    setSelectedMinute((prevMinute) => (prevMinute + 50) % 1000);
+  // Function to calculate price based on selected minute
+  const calculatePrice = (minute) => {
+    const priceMap = {
+      50: 218.00,
+      100: 393.00,
+      150: 650.00,
+      200: 857.00,
+      250: 1315.00,
+      300: 1605.00,
+      350: 2067.00,
+      400: 2459.00,
+      450: 2939.00,
+      500: 3400.00,
+      550: 4291.00,
+      600: 4652.00,
+      650: 5671.00,
+      700: 6080.00,
+      750: 6827.00,
+      800: 7254.00,
+      850: 8022.00,
+      900: 8466.00,
+      950: 8910.00,
+      1000: 9354.00
+    };
+    return priceMap[minute] || 0; // Return the corresponding price, default to 0 if not found
   };
 
-  const handleDecrement = () => {
-    setSelectedMinute((prevMinute) => (prevMinute - 50 + 1000) % 1000);
+  const handleIncrement = () => {
+    setSelectedMinute((prevMinute) => prevMinute === 950 ? 1000 : (prevMinute + 50) % 1000);
   };
+  
+  const handleDecrement = () => {
+    setSelectedMinute((prevMinute) => prevMinute === 0 ? 1000 : (prevMinute - 50 + 1000) % 1000);
+  };  
 
   const handleSetPrice = () => {
+
     // Set the price based on the selected minute, for example, multiplying it by some factor
     setPrice(selectedMinute * 0.1); // For example, price is 10% of selected minute
 
@@ -31,11 +59,18 @@ const Plans = () => {
           alert(err.message)
       })
   
+
   };
 
   const handleResetPrice = () => {
     setPrice(0); // Reset the price to 0
   };
+
+  useEffect(() => {
+    // Calculate price based on the selected minute whenever it changes
+    const calculatedPrice = calculatePrice(selectedMinute);
+    setPrice(calculatedPrice);
+  }, [selectedMinute]);
 
   return (
     <View style={styles.outerContainer}>
