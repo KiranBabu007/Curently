@@ -4,7 +4,7 @@ It features a sensor module that captures real-time data from outlets, wirelessl
 A user-friendly mobile app provides insights on current usage, historical data, and trends, with alerts for anomalies and personalized energy-saving tips.
 
 Team Name : TVA
-Team members
+Team members : 
 Anit Thomas
 Indrajith S Nair
 Kiran Babu
@@ -12,7 +12,7 @@ Sidharth Manikuttan
 
 Link to product walkthrough
 link to video Add your ppt to your repository
-Also Add the name below.
+Presentation : Curently.pptx
 
 How it Works ?
 Explaining the working of project Embed video of project demo
