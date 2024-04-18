@@ -5,76 +5,75 @@ import { app } from '../../firebaseConfig'
 import LottieView from 'lottie-react-native';
 import { router } from 'expo-router';
 
-const Signin = () => {
-    const auth = getAuth();
-    const [email, setEmail] = useState("");
+const Signup = () => {
+  const auth = getAuth();
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
-  
+  const [passwordError, setPasswordError] = useState("");
 
   const handleSignup = () => {
+    if (password.length < 6) {
+      setPasswordError("Password must be at least 6 characters long");
+      return;
+    }
+
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed up 
         const user = userCredential.user;
-        
-        // setSignup(!signup)
         router.replace('/Home');
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        // ..
+        // Handle error
       });
   }
-
   return (
     <SafeAreaView style={styles.container}>
-        <LottieView
-                source={require('../../assets/Animation - 1712257000816.json')}
-                speed={0.5}
-                autoPlay
-                loop
-                
-    style={{ width: 200, height: 200 }}
-            />
-        <Text style={styles.title}>Sign up</Text>
-        <View style={styles.inputView}>
+      <LottieView
+        source={require('../../assets/Animation - 1712257000816.json')}
+        speed={0.5}
+        autoPlay
+        loop
+        style={{ width: 200, height: 200 }}
+      />
+      <Text style={styles.title}>Sign up</Text>
+      <View style={styles.inputView}>
+        <TextInput
+          style={styles.input}
+          placeholder='EMAIL'
+          value={email}
+          onChangeText={setEmail}
+          autoCorrect={false}
+          autoCapitalize='none'
+          placeholderTextColor='rgba(0, 0, 0, 0.5)'
+        />
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <TextInput
-            style={styles.input}
-            placeholder='EMAIL'
-            value={email}
-            onChangeText={setEmail}
+            style={[styles.input, { flex: 1 }]}
+            placeholder='PASSWORD'
+            secureTextEntry={!showPassword}
+            value={password}
+            onChangeText={(text) => {
+              setPassword(text);
+              setPasswordError(text.length >= 6 ? "" : "Password must be at least 6 characters long");
+            }}
             autoCorrect={false}
             autoCapitalize='none'
             placeholderTextColor='rgba(0, 0, 0, 0.5)'
           />
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <TextInput
-              style={[styles.input, { flex: 1 }]}
-              placeholder='PASSWORD'
-              secureTextEntry={!showPassword} // Ternary operator to toggle secureTextEntry
-              value={password}
-              onChangeText={setPassword}
-              autoCorrect={false}
-              autoCapitalize='none'
-              placeholderTextColor='rgba(0, 0, 0, 0.5)'
-            />
-            
-          </View>
         </View>
-        <View style={styles.buttonView}>
-           <Pressable
-            style={[styles.button, { backgroundColor: 'black' }]}
-            onPress={handleSignup}
-          >
-            <Text style={[styles.buttonText, { color: 'white' }]} >Sign up</Text>
-          </Pressable>
-        </View>
-        
-      
+        {passwordError ? <Text style={styles.errorText}>{passwordError}</Text> : null}
+      </View>
+      <View style={styles.buttonView}>
+        <Pressable
+          style={[styles.button, { backgroundColor: 'black' }]}
+          onPress={handleSignup}
+        >
+          <Text style={[styles.buttonText, { color: 'white' }]}>Sign up</Text>
+        </Pressable>
+      </View>
     </SafeAreaView>
   );
 };
@@ -86,13 +85,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  innerContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "transparent",
-    paddingHorizontal: 40
   },
   title: {
     fontSize: 30,
@@ -132,20 +124,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: 'white'
   },
-  footerText: {
-    textAlign: "center",
-    color: "black",
-    marginTop: 10,
-  },
-  signup: {
-    color: "grey",
-    fontSize: 13
-  },
-  animation: {
-    width: 300,
-    height: 300,
-    marginBottom: 20,
+  errorText: {
+    color: 'red',
+    marginTop: 5,
+    fontSize :10,
   }
 });
 
-export default Signin
+export default Signup;
