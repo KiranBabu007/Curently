@@ -10,12 +10,11 @@ Indrajith S Nair
 Kiran Babu
 Sidharth Manikuttan
 
-Link to product walkthrough
-link to video Add your ppt to your repository
-Presentation : Curently.pptx
+Link to product walkthrough:
+link to video:
 
 How it Works ?
-Explaining the working of project Embed video of project demo
+
 The project operates by first using a Current transformer SCT 013 to measure the current flowing through an electrical wire. 
 This transformer provides an output signal proportional to the current intensity. The signal is then processed by an ESP32 
 microcontroller, programmed using the Arduino IDE. The ESP32 digitizes and analyzes the signal, performing necessary calculations 
@@ -27,18 +26,17 @@ real-time energy monitoring, facilitating informed decision-making and resource 
 
 Libraries used
 Emonlib - 1.1.0 #In arduino IDE for accessing data from CT
+Firebase_ESP_Client library for arduino 
 React Native - 0.73.6 #Javascript Library
 
 How to configure
-1.Install Node.js and npm
-2.Install Expo CLI
-3.Create a New React Native Project
-4.Navigate to Project Directory
-5.Start the Development Server
-6.Open Your Project in Expo Go App
-7.Set Up Firebase
+1.Install Node.js
+2.Connect the hardware to Firebase
+3.Connect app to firebase
+4.Start the project
+
 
 How to Run
-1:Start the Development Server
-2.Open Your Project in Expo Go App
-3.View Your Project
+1.Clone repository and Type npm install in command line after navigating into repo
+2.Type npx expo start
+3.Open Your Project in Expo Go App by scanning the qrcode or connecting a usb and turning on usb debugging mode.
