@@ -8,6 +8,7 @@ import emailjs from '@emailjs/browser'
 
 
 
+
 const Home = () => {
   const [currentValue, setCurrentValue] = useState('');
   const [setPower,power]=useState('');
