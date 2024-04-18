@@ -3,6 +3,8 @@ import { Alert, Button, Image, Pressable, SafeAreaView, StyleSheet, Switch, Text
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from '../../firebaseConfig'
 import LottieView from 'lottie-react-native';
+import { router } from 'expo-router';
+
 const Signin = () => {
     const auth = getAuth();
     const [email, setEmail] = useState("");
@@ -17,7 +19,8 @@ const Signin = () => {
         // Signed up 
         const user = userCredential.user;
         alert('Created User')
-        setSignup(!signup)
+        // setSignup(!signup)
+        router.replace('/Home');
         // ...
       })
       .catch((error) => {

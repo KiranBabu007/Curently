@@ -1,23 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useRef } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
-import { collection, addDoc, Timestamp } from 'firebase/firestore';
+import { collection, addDoc, Timestamp,getDocs } from 'firebase/firestore';
 import { app, database, firestore } from '../../firebaseConfig';
 import { ref, onValue } from 'firebase/database';
-
+import emailjs from '@emailjs/browser'
 
 
 
 const Home = () => {
   const [currentValue, setCurrentValue] = useState('');
   const collectionRef = collection(firestore, 'values');
-
+  const dbInstance = collection(firestore,"limit");
+  const [array,setArray] = useState([]);
+  const form = useRef(null);
+  
   useEffect(() => {
+    
     const userDataRef = ref(database, '/UsersData/HLNSA5eBI5W5Qjew01pEla3kjjw2');
     const unsubscribe = onValue(userDataRef, (snapshot) => {
       const data = snapshot.val();
       if (data) {
         setCurrentValue(data.current);
         addDataToFirestore(data);
+        getlimit(data);
       }
     });
     return () => {
@@ -41,6 +46,19 @@ const Home = () => {
       console.error('Error adding document: ', error);
     }
   };
+
+  const getlimit = async (data) => {
+    const datas = await getDocs(dbInstance);
+    const newArray = datas.docs.map((item) => {
+        return {...item.data(), id: item.id}
+    });
+    setArray(newArray);
+    console.log(newArray[0].limit);
+}
+
+
+  
+  
 
   return (
     <ScrollView style={styles.container}>

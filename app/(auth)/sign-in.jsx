@@ -3,7 +3,7 @@ import { Alert, Button, Image, Pressable, SafeAreaView, StyleSheet, Switch, Text
 import { getAuth,signInWithEmailAndPassword } from 'firebase/auth';
 import { app } from '../../firebaseConfig';
 import LottieView from 'lottie-react-native';
-
+import { router } from 'expo-router';
 const Signin = () => {
     const auth = getAuth();
     const [email, setEmail] = useState("");
@@ -16,6 +16,7 @@ const Signin = () => {
         // Signed in 
         console.log('Signed in')
         const user = userCredential.user;
+        router.replace('/Home');
         // ...
       })
       .catch((error) => {
