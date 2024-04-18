@@ -20,6 +20,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+      
         name="Plans"
         options={{
           title: 'Plans',

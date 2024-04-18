@@ -85,14 +85,45 @@ const styles = StyleSheet.create({
     
   },
   dataContainer: {
-    height:80,
-    justifyContent: 'space-around',
-    backgroundColor:'white',
-    borderWidth: 1,
-   
-    borderRadius: 10,
-    padding: 10,
-    marginTop: 10,
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    padding: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  cardHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  headerText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#333',
+  },
+  dateText: {
+    fontSize: 16,
+    color: '#666',
+  },
+  
+  dataItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  dataIcon: {
+    marginRight: 8,
+  },
+  dataText: {
+    fontSize: 16,
+    color: '#333',
+  },
+  dataValueText: {
+    fontWeight: 'bold',
   },
 });
 

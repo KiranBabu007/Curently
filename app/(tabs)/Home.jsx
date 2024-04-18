@@ -7,7 +7,7 @@ import emailjs from '@emailjs/browser';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import { multiFactor } from 'firebase/auth';
-
+import Icon from 'react-native-vector-icons/FontAwesome'; 
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -16,8 +16,6 @@ Notifications.setNotificationHandler({
     shouldSetBadge: false,
   }),
 });
-
-
 
 const Home = () => {
   const [currentValue, setCurrentValue] = useState('');
@@ -33,6 +31,14 @@ const Home = () => {
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
+
+  const [rooms, setRooms] = useState([
+    { id: 1, name: 'Living Room', consumption: 120 },
+    { id: 2, name: 'Kitchen', consumption: 80 },
+    { id: 3, name: 'Bedroom 1', consumption: 60 },
+    { id: 4, name: 'Bedroom 2', consumption: 50 },
+    { id: 5, name: 'Bathroom', consumption: 30 },
+  ]);
 
 
   useEffect(() => {
@@ -128,7 +134,22 @@ const Home = () => {
           </View>
         </View>
       </View>
-    
+      <View style={styles.roomsContainer}>
+     <Text style={styles.roomsHeading}>Rooms</Text>
+     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+       {/* Map rooms data to render room cards */}
+       {rooms.map((room, index) => (
+         <View key={index} style={styles.roomCard}>
+           <View style={styles.roomIcon}>
+             {/* Replace with appropriate room icon */}
+             <Icon name="home" size={24} color="#333" />
+           </View>
+           <Text style={styles.roomName}>{room.name}</Text>
+           <Text style={styles.roomConsumption}>{room.consumption} W</Text>
+         </View>
+       ))}
+     </ScrollView>
+   </View>
     </ScrollView>
   );
 };
@@ -243,6 +264,40 @@ const styles = StyleSheet.create({
   outputText: {
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  roomsContainer: {
+    marginVertical: 16,
+    marginHorizontal:16,
+  },
+  roomsHeading: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  roomCard: {
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    padding: 16,
+    marginRight: 12,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 2,
+    width: 150, // Adjust the width as needed
+  },
+  roomIcon: {
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  roomName: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 4,
+  },
+  roomConsumption: {
+    fontSize: 14,
+    color: '#666',
   },
 });
 
