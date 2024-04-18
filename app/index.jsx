@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { View, Text } from 'react-native'; // Remove 'Video' import
@@ -18,6 +19,7 @@ const SplashScreen = () => (
   </View>
 );
 
+
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
 
@@ -31,6 +33,7 @@ export default function App() {
   }, []);
 
   return (
+
     <>
       {showSplash ? (
         <SplashScreen />
@@ -45,3 +48,4 @@ export default function App() {
     </>
   );
 }
+

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-
+import { firestore } from '../../firebaseConfig';
+import { doc,updateDoc } from 'firebase/firestore';
 const Plans = () => {
+  const id="tyv0cGkSgFqqylJzHMyc";
   const [selectedMinute, setSelectedMinute] = useState(50);
   const [price, setPrice] = useState(0); // State for the price
 
@@ -41,9 +43,23 @@ const Plans = () => {
   };  
 
   const handleSetPrice = () => {
-    // Calculate price based on the selected minute
-    const calculatedPrice = calculatePrice(selectedMinute);
-    setPrice(calculatedPrice);
+
+    // Set the price based on the selected minute, for example, multiplying it by some factor
+    setPrice(selectedMinute * 0.1); // For example, price is 10% of selected minute
+
+    
+      let dataToUpdate = doc(firestore,'limit',id)
+      updateDoc(dataToUpdate,{
+          limit: selectedMinute
+      })
+      .then(() => {
+          alert('Data Updated')           
+      })
+      .catch((err) => {
+          alert(err.message)
+      })
+  
+
   };
 
   const handleResetPrice = () => {
