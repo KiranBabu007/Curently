@@ -30,7 +30,15 @@ Emonlib - 1.1.0 #In arduino IDE for accessing data from CT
 React Native - 0.73.6 #Javascript Library
 
 How to configure
-Instructions for setting up project
+1.Install Node.js and npm
+2.Install Expo CLI
+3.Create a New React Native Project
+4.Navigate to Project Directory
+5.Start the Development Server
+6.Open Your Project in Expo Go App
+7.Set Up Firebase
 
 How to Run
-Instructions for running
+1:Start the Development Server
+2.Open Your Project in Expo Go App
+3.View Your Project
