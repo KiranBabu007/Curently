@@ -8,7 +8,10 @@ const MyCalendar = () => {
   const dbInstance = collection(firestore, 'values');
   const [selectedDate, setSelectedDate] = useState(null);
   const [fetchedData, setFetchedData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false); // Add a state for loading
+  const [isLoading, setIsLoading] = useState(false); 
+  // Add a state for loading
+
+  
 
   const getData = async () => {
     setIsLoading(true); // Set loading state to true before fetching data
@@ -34,6 +37,7 @@ const MyCalendar = () => {
       setIsLoading(false); // Set loading state to false after fetching data
     }
   };
+
 
   return (
     <View style={styles.container}>

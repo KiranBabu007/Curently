@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import axios from 'axios';
+import { collection, addDoc, Timestamp,getDocs } from 'firebase/firestore';
+import { app, database, firestore } from '../../firebaseConfig';
+import { ref, onValue } from 'firebase/database';
+
+
 
 
 const FormPage = () => {
   const [unitsConsumed, setUnitsConsumed] = useState('');
   const [isOneMonth, setIsOneMonth] = useState(false);
   const [isTwoMonth, setIsTwoMonth] = useState(false);
-  const [responseData, setResponseData] = useState(null); // State to store the response data
+  const [responseData, setResponseData] = useState(null);
+  const [kwh,setkwh] =useState() 
+  const [consumed,setconsumed] =useState(false) // State to store the response data
 
   const handleOneMonthPress = () => {
     setIsOneMonth(!isOneMonth);
@@ -62,6 +69,24 @@ const FormPage = () => {
         console.log(error);
       });
   };
+  const handlekwh =()=>{
+    setUnitsConsumed(kwh)
+    setconsumed(!consumed)
+  }
+
+  useEffect(() => {
+    
+    const userDataRef = ref(database, '/UsersData/HLNSA5eBI5W5Qjew01pEla3kjjw2');
+    const unsubscribe = onValue(userDataRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        setkwh(data.KWH)
+      }
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -74,9 +99,21 @@ const FormPage = () => {
           value={unitsConsumed}
           onChangeText={setUnitsConsumed}
           keyboardType="numeric"
+          editable={!consumed}
+          
         />
+       
+       
+      </View> 
+      <View>
+      <TouchableOpacity className="mb-10" style={[styles.checkbox, consumed && styles.checkedCheckbox, { borderColor: '#ADD8E6' }]}
+      onPress={handlekwh}><Text style={[styles.checkboxText,
+        consumed && styles.checkedCheckboxText,]}>Use Current Consumed Units</Text>
+      </TouchableOpacity>
       </View>
+      
       <View style={styles.checkboxContainer}>
+
         <TouchableOpacity
           style={[styles.checkbox, isOneMonth && styles.checkedCheckbox, { borderColor: '#ADD8E6' }]}
           onPress={handleOneMonthPress}
