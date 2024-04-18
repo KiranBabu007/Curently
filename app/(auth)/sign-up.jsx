@@ -18,7 +18,7 @@ const Signin = () => {
       .then((userCredential) => {
         // Signed up 
         const user = userCredential.user;
-        alert('Created User')
+        
         // setSignup(!signup)
         router.replace('/Home');
         // ...
