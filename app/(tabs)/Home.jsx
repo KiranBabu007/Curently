@@ -3,11 +3,11 @@ import { View, Text, StyleSheet, Image, ScrollView,Platform } from 'react-native
 import { collection, addDoc, Timestamp,getDocs } from 'firebase/firestore';
 import { app, database, firestore } from '../../firebaseConfig';
 import { ref, onValue } from 'firebase/database';
-import emailjs from '@emailjs/browser';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import { multiFactor } from 'firebase/auth';
 import Icon from 'react-native-vector-icons/FontAwesome'; 
+import emailjs from '@emailjs/react-native';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -26,6 +26,8 @@ const Home = () => {
   const [array,setArray] = useState([]);
   const form = useRef(null);
   const [multiplier,setMultiplier] = useState(10);
+  const [previousValue, setPreviousValue] = useState('');
+  const dbInstance1 = collection(firestore,"emails");
 
   const [expoPushToken, setExpoPushToken] = useState('');
   const [notification, setNotification] = useState(false);
@@ -69,12 +71,17 @@ const Home = () => {
         setpowerValue(data.power);
         addDataToFirestore(data);
         getlimit(data);
+        if (previousValue !== '' && (data.current - previousValue) > 4) {
+          schedulePushNotification("Sudden increase in current detected");
+          getemail(1)
+        }
+        setPreviousValue(data.current); // Update previous value
       }
     });
     return () => {
       unsubscribe();
     };
-  }, []);
+  },  [previousValue]);
 
   const addDataToFirestore = async (data) => {
     try {
@@ -108,8 +115,9 @@ const getlimit = async (data) => {
   // Function to schedule push notification only if it hasn't been scheduled before for this percentage
   const schedulePushNotificationOnce = (percentageThreshold) => {
     if (!notificationStatus[percentageThreshold]) {
-      schedulePushNotification(percentageThreshold);
+      schedulePushNotification(`You have exceeded ${percentageThreshold}% of the limit`);
       notificationStatus[percentageThreshold] = true;
+      getemail(percentageThreshold);
     }
   };
 
@@ -146,6 +154,37 @@ const getlimit = async (data) => {
   }
 };
 
+const getemail = async (data) => {
+  const datas = await getDocs(dbInstance1);
+  const newArray = datas.docs.map((item) => {
+    return {...item.data(), id: item.id}
+  });
+  const emails = newArray.map(item => item.email);
+console.log(emails);
+
+}
+
+
+// const templateParams = {
+//   from_name: 'Curently',
+//   message:"Veed Kathi",
+//   mail:"indrajithmundackal@gmail.com"
+// };
+
+// emailjs
+//   .send('service_2msy9m8', 'template_samev4z', templateParams, {
+//     publicKey: '47jKhhhAvV9jqiifo',
+//     privateKey: 'qGhJ6GFchx14VAfpMb6GV'
+//   })
+//   .then(
+//     (response) => {
+//       console.log('SUCCESS!', response.status, response.text);
+
+//     },
+//     (err) => {
+//       console.log('FAILED...', err);
+//     },
+//   );
 
   
   
@@ -193,17 +232,17 @@ const getlimit = async (data) => {
   );
 };
 
-async function schedulePushNotification(multiplier) {
+async function schedulePushNotification(body) {
   await Notifications.scheduleNotificationAsync({
     content: {
       title: "Alert!!!!!",
-      body: `You have crossed ${multiplier}% of the limit`,
+      body: body,
       data: { data: 'goes here' },
     },
     trigger: { seconds: 2 },
-    
   });
 }
+
 
 
 async function registerForPushNotificationsAsync() {
