@@ -199,9 +199,9 @@ return (
       <Text style={styles.text}>Current Consumption :</Text>
       <Text style={styles.currenttext}>{currentValue} A</Text>
     </View>
-    <View style={styles.cardContainer}>
-      <View style={styles.card}>
-        <View style={styles.cardContent}>
+    <View  style={styles.cardContainer}>
+      <View className="bg-slate-200"  style={styles.card}>
+        <View   style={styles.cardContent}>
           <Text style={styles.cardText}>Power Consumption:</Text>
           <View style={styles.outputBox}>
             <Text style={styles.outputText}>{powerValue} W</Text>
@@ -209,15 +209,15 @@ return (
         </View>
       </View>
     </View>
-    <View style={styles.roomsContainer}>
-<Text style={styles.roomsHeading}>Rooms</Text>
-<ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+    <View  style={styles.roomsContainer}>
+<Text  style={styles.roomsHeading}>Rooms</Text>
+<ScrollView className=" pt-5 pb-5 pl-2 " horizontal={true} showsHorizontalScrollIndicator={false}>
 {rooms.map((room) => (
-  <View key={room.id} style={styles.roomCard}>
+  <View key={room.id} className="w-"  style={styles.roomCard}>
     <View style={styles.roomImageContainer}>
       <Image source={room.image} style={styles.roomImage} />
     </View>
-    <View style={styles.roomInfo}>
+    <View className="bg-slate-200 flex h-20 " style={styles.roomInfo}>
       <Text style={styles.roomName}>{room.name}</Text>
       <Text style={styles.roomConsumption}>{room.consumption} W</Text>
     </View>
@@ -312,17 +312,10 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   card: {
-    backgroundColor: '#f2f2f2',
+ 
     padding: 20,
     borderRadius: 10,
     width: '90%',
-    shadowColor: 'blue',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
     elevation: 4,
   },
   cardContent: {
@@ -335,7 +328,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   outputBox: {
-    backgroundColor: '#f2f2f2',
+   
     padding: 10,
     borderRadius: 5,
   },
@@ -344,30 +337,27 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   roomsContainer: {
-    marginVertical: 16,
-    marginHorizontal:16,
+    marginLeft:16,
+    paddingVertical: 16,
   },
   roomsHeading: {
-    fontSize: 18,
+    fontSize: 22,
     fontWeight: 'bold',
-    marginBottom: 8,
+    marginBottom: 5,
+    
   },
   roomCard: {
     backgroundColor: '#fff',
     borderRadius: 8,
-    padding: 16,
     marginRight: 12,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.23,
-    shadowRadius: 4,
-    elevation: 2,
-    width: 170, // Adjust the width as needed
+    width: 260,
+    height: 200,
+    overflow: 'hidden', 
   },
   roomName: {
     fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: 4,
+    margin:3
   },
   roomConsumption: {
     fontSize: 14,
@@ -380,11 +370,12 @@ const styles = StyleSheet.create({
   },
   roomImage: {
     width: '100%',
-    height: 100, // Adjust the height as needed
+    height: 135, // Adjust the height as needed
   },
   roomInfo: {
     alignItems: 'center',
-    padding: 10, // Add padding to separate image and info
+    padding:6
+     // Add padding to separate image and info
   },
 });
 
