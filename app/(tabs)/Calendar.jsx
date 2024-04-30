@@ -22,7 +22,8 @@ const MyCalendar = () => {
         return;
       }
 
-      const q = query(dbInstance, where('date', '==', selectedDate));
+      const selectedDateUTC = new Date(selectedDate).toISOString().substring(0, 10); // Format selected date in UTC
+      const q = query(dbInstance, where('date', '==', selectedDateUTC));
       const querySnapshot = await getDocs(q);
       if (querySnapshot.empty) {
         console.log('No matching documents.');
@@ -78,13 +79,11 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   calendarContainer: {
-    
     borderRadius: 1,
     padding: 2,
     width: '90%',
     gap:20,
     marginBottom: 20,
-    
   },
   dataContainer: {
     backgroundColor: '#fff',
@@ -111,7 +110,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#666',
   },
-  
   dataItem: {
     flexDirection: 'row',
     alignItems: 'center',

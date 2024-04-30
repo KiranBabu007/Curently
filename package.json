@@ -11,6 +11,7 @@
   "dependencies": {
     "@birdwingo/react-native-reanimated-graph": "^1.0.22",
     "@emailjs/browser": "^4.3.3",
+    "@emailjs/react-native": "^4.2.2",
     "@react-native-async-storage/async-storage": "^1.21.0",
     "@react-native-firebase/app": "^19.2.2",
     "@react-native-firebase/messaging": "^19.2.2",
