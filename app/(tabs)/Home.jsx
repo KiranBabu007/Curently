@@ -20,12 +20,10 @@ Notifications.setNotificationHandler({
 const Home = () => {
   const [currentValue, setCurrentValue] = useState('');
   const [powerValue, setpowerValue] = useState('');
-  const [setPower,power]=useState('');
   const collectionRef = collection(firestore, 'values');
   const dbInstance = collection(firestore,"limit");
   const [array,setArray] = useState([]);
-  const form = useRef(null);
-  const [multiplier,setMultiplier] = useState(10);
+ 
   const [previousValue, setPreviousValue] = useState('');
   const dbInstance1 = collection(firestore,"emails");
 
@@ -161,7 +159,6 @@ const getemail = async (data) => {
   });
   const emails = newArray.map(item => item.email);
 console.log(emails);
-
 }
 
 
@@ -389,7 +386,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10, // Add padding to separate image and info
   },
-  
 });
 
 export default Home;
