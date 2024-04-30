@@ -102,8 +102,6 @@ const FormPage = () => {
           editable={!consumed}
           
         />
-       
-       
       </View> 
       <View>
       <TouchableOpacity className="mb-10" style={[styles.checkbox, consumed && styles.checkedCheckbox, { borderColor: '#ADD8E6' }]}
@@ -244,7 +242,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   cardContainer: {
-    width: '100%', // Changed width to 100%
+    width: '100%', 
     backgroundColor: '#F0F0F0',
     padding: 20,
     borderRadius: 10,

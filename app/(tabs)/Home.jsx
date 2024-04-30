@@ -34,13 +34,13 @@ const Home = () => {
   const notificationListener = useRef();
   const responseListener = useRef();
 
-  const [rooms, setRooms] = useState([
-    { id: 1, name: 'Living Room', consumption: 120 },
-    { id: 2, name: 'Kitchen', consumption: 80 },
-    { id: 3, name: 'Bedroom 1', consumption: 60 },
-    { id: 4, name: 'Bedroom 2', consumption: 50 },
-    { id: 5, name: 'Bathroom', consumption: 30 },
-  ]);
+  const rooms=[ 
+    { id: 1, name: 'Living Room', consumption: 120, image: require('../../assets/Living_Room.png') },
+    { id: 2, name: 'Kitchen', consumption: 80, image: require('../../assets/Kitchen.png') },
+    { id: 3, name: 'Dining Room', consumption: 60, image: require('../../assets/Dining_Room.png') },
+    { id: 4, name: 'Bed Room', consumption: 40, image: require('../../assets/Bed_Room.jpg') },
+    { id: 5, name: 'Bath Room', consumption: 40, image: require('../../assets/Bath_Room.jpg') },
+  ]
 
 
   useEffect(() => {
@@ -189,48 +189,50 @@ console.log(emails);
   
   
 
-  return (
-    <ScrollView style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image
-          source={require('../../assets/home.png')}
-          style={styles.image}
-          resizeMode="contain"
-        />
-      </View>
-      <View style={styles.infoContainer}>
-        <Text style={styles.text}>Current Consumption :</Text>
-        <Text style={styles.currenttext}>{currentValue} A</Text>
-      </View>
-      <View style={styles.cardContainer}>
-        <View style={styles.card}>
-          <View style={styles.cardContent}>
-            <Text style={styles.cardText}>Power Consumption:</Text>
-            <View style={styles.outputBox}>
-              <Text style={styles.outputText}>{powerValue} W</Text>
-            </View>
+return (
+  <ScrollView style={styles.container}>
+    <View style={styles.imageContainer}>
+      <Image
+        source={require('../../assets/home.png')}
+        style={styles.image}
+        resizeMode="contain"
+      />
+    </View>
+    <View style={styles.infoContainer}>
+      <Text style={styles.text}>Current Consumption :</Text>
+      <Text style={styles.currenttext}>{currentValue} A</Text>
+    </View>
+    <View style={styles.cardContainer}>
+      <View style={styles.card}>
+        <View style={styles.cardContent}>
+          <Text style={styles.cardText}>Power Consumption:</Text>
+          <View style={styles.outputBox}>
+            <Text style={styles.outputText}>{powerValue} W</Text>
           </View>
         </View>
       </View>
-      <View style={styles.roomsContainer}>
-     <Text style={styles.roomsHeading}>Rooms</Text>
-     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-       {/* Map rooms data to render room cards */}
-       {rooms.map((room, index) => (
-         <View key={index} style={styles.roomCard}>
-           <View style={styles.roomIcon}>
-             {/* Replace with appropriate room icon */}
-             <Icon name="home" size={24} color="#333" />
-           </View>
-           <Text style={styles.roomName}>{room.name}</Text>
-           <Text style={styles.roomConsumption}>{room.consumption} W</Text>
-         </View>
-       ))}
-     </ScrollView>
-   </View>
-    </ScrollView>
-  );
+    </View>
+    <View style={styles.roomsContainer}>
+<Text style={styles.roomsHeading}>Rooms</Text>
+<ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+{rooms.map((room) => (
+  <View key={room.id} style={styles.roomCard}>
+    <View style={styles.roomImageContainer}>
+      <Image source={room.image} style={styles.roomImage} />
+    </View>
+    <View style={styles.roomInfo}>
+      <Text style={styles.roomName}>{room.name}</Text>
+      <Text style={styles.roomConsumption}>{room.consumption} W</Text>
+    </View>
+  </View>
+))}
+</ScrollView>
+
+ </View>
+  </ScrollView>
+);
 };
+
 
 async function schedulePushNotification(body) {
   await Notifications.scheduleNotificationAsync({
@@ -360,14 +362,10 @@ const styles = StyleSheet.create({
     marginRight: 12,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.23,
     shadowRadius: 4,
     elevation: 2,
-    width: 150, // Adjust the width as needed
-  },
-  roomIcon: {
-    alignItems: 'center',
-    marginBottom: 8,
+    width: 170, // Adjust the width as needed
   },
   roomName: {
     fontSize: 16,
@@ -378,6 +376,20 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#666',
   },
+  roomImageContainer: {
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
+    overflow: 'hidden', // Clip the image to fit within the container
+  },
+  roomImage: {
+    width: '100%',
+    height: 100, // Adjust the height as needed
+  },
+  roomInfo: {
+    alignItems: 'center',
+    padding: 10, // Add padding to separate image and info
+  },
+  
 });
 
-export default Home;
+export default Home;
