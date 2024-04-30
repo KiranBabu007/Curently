@@ -8,7 +8,7 @@ import * as Notifications from 'expo-notifications';
 import { multiFactor } from 'firebase/auth';
 import Icon from 'react-native-vector-icons/FontAwesome'; 
 import emailjs from '@emailjs/react-native';
-
+let notificationStatus = {}; 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
@@ -33,6 +33,7 @@ const Home = () => {
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
+  
 
   const [rooms, setRooms] = useState([
     { id: 1, name: 'Living Room', consumption: 120 },
@@ -73,7 +74,8 @@ const Home = () => {
         getlimit(data);
         if (previousValue !== '' && (data.current - previousValue) > 4) {
           schedulePushNotification("Sudden increase in current detected");
-          getemail(1)
+          getemail(1);
+          
         }
         setPreviousValue(data.current); // Update previous value
       }
@@ -101,7 +103,7 @@ const Home = () => {
   };
 
   // Define an object to track notification status
-let notificationStatus = {};
+
 
 const getlimit = async (data) => {
   const datas = await getDocs(dbInstance);
@@ -152,6 +154,7 @@ const getlimit = async (data) => {
   else if (percentage > 10) {
     schedulePushNotificationOnce(10);
   }
+
 };
 
 const getemail = async (data) => {
@@ -161,32 +164,37 @@ const getemail = async (data) => {
   });
   const emails = newArray.map(item => item.email);
 console.log(emails);
+const message = data === 1 ?
+    "Sudden increase in current detected" :
+    `You have exceeded ${data}% of the limit`;
+
+const templateParams = {
+  from_name: 'Curently',
+  message:message,
+  mail:emails[0]
+  
+};
+
+emailjs
+  .send('service_2msy9m8', 'template_samev4z', templateParams, {
+    publicKey: '47jKhhhAvV9jqiifo',
+    
+  })
+  .then(
+    (response) => {
+      console.log('SUCCESS!', response.status, response.text);
+      
+    },
+    (err) => {
+      console.log('FAILED...', err);
+    },
+  );
+
+  
 
 }
 
 
-// const templateParams = {
-//   from_name: 'Curently',
-//   message:"Veed Kathi",
-//   mail:"indrajithmundackal@gmail.com"
-// };
-
-// emailjs
-//   .send('service_2msy9m8', 'template_samev4z', templateParams, {
-//     publicKey: '47jKhhhAvV9jqiifo',
-//     privateKey: 'qGhJ6GFchx14VAfpMb6GV'
-//   })
-//   .then(
-//     (response) => {
-//       console.log('SUCCESS!', response.status, response.text);
-
-//     },
-//     (err) => {
-//       console.log('FAILED...', err);
-//     },
-//   );
-
-  
   
 
   return (

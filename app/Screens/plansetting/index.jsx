@@ -1,23 +1,25 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc,updateDoc,doc } from 'firebase/firestore';
 import { firestore } from '../../../firebaseConfig';
 
 const Plansetting = () => {
   const [email, setEmail] = useState('');
   const collectionRef = collection(firestore, 'emails');
-
+  const id="ayjgC7jL1JQ2sqcEvqWt"
   const handleAddEmail = async () => {
-    try {
-      const docRef = await addDoc(collectionRef, {
-        email: email,
-      });
-      console.log('Email added with ID: ', docRef.id);
-      setEmail(''); // Clear the email input after adding
-    } catch (error) {
-      console.error('Error adding email: ', error);
-    }
+    let dataToUpdate = doc(firestore,'emails',id)
+      updateDoc(dataToUpdate,{
+          email: email
+      })
+      .then(() => {
+          alert('Data Updated')           
+      })
+      .catch((err) => {
+          alert(err.message)
+      })
+
   };
 
   return (
