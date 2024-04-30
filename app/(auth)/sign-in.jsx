@@ -24,6 +24,7 @@ const Signin = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
       });
+      router.replace('/Home');
   };
 
   

@@ -93,19 +93,58 @@ const Home = () => {
     }
   };
 
-  const getlimit = async (data) => {
-    const datas = await getDocs(dbInstance);
-    const newArray = datas.docs.map((item) => {
-        return {...item.data(), id: item.id}
-    });
-    setArray(newArray);
-    console.log(newArray[0].limit);
-    if(data.KWH > (multiplier/100)*newArray[0].limit) {
-      schedulePushNotification(multiplier);
-      setMultiplier(multiplier+10);
-      console.log(multiplier)
+  // Define an object to track notification status
+let notificationStatus = {};
+
+const getlimit = async (data) => {
+  const datas = await getDocs(dbInstance);
+  const newArray = datas.docs.map((item) => {
+    return {...item.data(), id: item.id}
+  });
+  setArray(newArray);
+  const limit = newArray[0].limit;
+  const percentage = (data.KWH / limit) * 100;
+
+  // Function to schedule push notification only if it hasn't been scheduled before for this percentage
+  const schedulePushNotificationOnce = (percentageThreshold) => {
+    if (!notificationStatus[percentageThreshold]) {
+      schedulePushNotification(percentageThreshold);
+      notificationStatus[percentageThreshold] = true;
     }
-}
+  };
+
+  if (percentage > 100) {
+    schedulePushNotificationOnce(100);
+    notificationStatus = {};
+  }
+  else if (percentage > 90) {
+    schedulePushNotificationOnce(90);
+  }
+  else if (percentage > 80) {
+    schedulePushNotificationOnce(80);
+  }
+  else if (percentage > 70) {
+    schedulePushNotificationOnce(70);
+  }
+  else if (percentage > 60) {
+    schedulePushNotificationOnce(60);
+  }
+  else if (percentage > 50) {
+    schedulePushNotificationOnce(50);
+  }
+  else if (percentage > 40) {
+    schedulePushNotificationOnce(40);
+  }
+  else if (percentage > 30) {
+    schedulePushNotificationOnce(30);
+  }
+  else if (percentage > 20) {
+    schedulePushNotificationOnce(20);
+  }
+  else if (percentage > 10) {
+    schedulePushNotificationOnce(10);
+  }
+};
 
 
   
@@ -162,6 +201,7 @@ async function schedulePushNotification(multiplier) {
       data: { data: 'goes here' },
     },
     trigger: { seconds: 2 },
+    
   });
 }
 

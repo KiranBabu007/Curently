@@ -88,7 +88,7 @@ const Plans = () => {
           </TouchableOpacity>
         </View>
         <View style={styles.priceContainer}>
-          <Text style={styles.priceText}>Price: ${price.toFixed(2)}</Text>
+          <Text style={styles.priceText}>Price: ₹{price.toFixed(2)}</Text>
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity onPress={handleSetPrice} style={styles.button}>
