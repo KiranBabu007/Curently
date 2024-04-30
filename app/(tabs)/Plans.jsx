@@ -88,7 +88,7 @@ const Plans = () => {
           </TouchableOpacity>
         </View>
         <View style={styles.priceContainer}>
-          <Text style={styles.priceText}>Price: ₹{price.toFixed(2)}</Text>
+          <Text style={styles.priceText}>Price: ${price.toFixed(2)}</Text>
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity onPress={handleSetPrice} style={styles.button}>
@@ -98,6 +98,33 @@ const Plans = () => {
             <Text style={styles.buttonText}>Reset</Text>
           </TouchableOpacity>
         </View>
+        <View style={styles.instructionsCard}>
+        <Text style={styles.cardTitle}>Instructions:</Text>
+        <View style={styles.bulletPoint}>
+          <Text style={styles.bulletText}>1. Lorem ipsum dolor sit amet.</Text>
+        </View>
+        <View style={styles.bulletPoint}>
+          <Text style={styles.bulletText}>2. Consectetur adipiscing elit.</Text>
+        </View>
+        <View style={styles.bulletPoint}>
+          <Text style={styles.bulletText}>3. Sed do eiusmod tempor incididunt.</Text>
+        </View>
+        <View style={styles.bulletPoint}>
+          <Text style={styles.bulletText}>4. Sed do eiusmod tempor incididunt.</Text>
+        </View>
+        <View style={styles.bulletPoint}>
+          <Text style={styles.bulletText}>5. Sed do eiusmod tempor incididunt.</Text>
+        </View>
+        <View style={styles.bulletPoint}>
+          <Text style={styles.bulletText}>6. Sed do eiusmod tempor incididunt.</Text>
+        </View>
+        <View style={styles.bulletPoint}>
+          <Text style={styles.bulletText}>7. Sed do eiusmod tempor incididunt.</Text>
+        </View>
+        <View style={styles.bulletPoint}>
+          <Text style={styles.bulletText}>8. Sed do eiusmod tempor incididunt.</Text>
+        </View>
+      </View>
       </View>
     </View>
   );
@@ -162,6 +189,34 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  instructionsCard: {
+    backgroundColor: '#ffffff',
+    borderRadius: 10,
+    padding: 20,
+    marginTop: 50,
+    elevation: 5, // Add elevation for shadow effect
+    shadowColor: 'blue', // Shadow color
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+  },
+  cardTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  bulletPoint: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 5,
+  },
+  bulletText: {
+    marginLeft: 10,
+    fontSize: 16,
   },
 });
 
