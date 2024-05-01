@@ -1,7 +1,7 @@
 import React, { useEffect, useState,useRef } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView,Platform } from 'react-native';
 import { collection, addDoc, Timestamp,getDocs } from 'firebase/firestore';
-import { app, database, firestore } from '../../firebaseConfig';
+import { app, database, firestore ,auth} from '../../firebaseConfig';
 import { ref, onValue } from 'firebase/database';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
