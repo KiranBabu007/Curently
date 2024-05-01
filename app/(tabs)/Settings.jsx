@@ -11,7 +11,7 @@ const SettingsScreen = () => {
     { icon: 'settings', label: 'General settings', href: '/general-settings' },
     { icon: 'lock-closed', label: 'Privacy settings', href: '/privacy-settings' },
     { icon: 'notifications', label: 'Notification settings', href: '/notification-settings' },
-    { icon: 'moon', label: 'Appearance settings', href: '/appearance-settings' },
+    { icon: 'leaf', label: 'Plan Setting', href: '/plansetting' },
     { icon: 'build', label: 'Advanced settings', href: '/advanced-settings' },
     { icon: 'help-circle', label: 'Help and support', href: '/help-and-support' },
     { icon: 'log-out', label: 'Sign out', href: '/Screens/sign-out' },
@@ -20,7 +20,7 @@ const SettingsScreen = () => {
   return (
     <View style={styles.container}>
       {settingsData.map((item, index) => (
-        <TouchableOpacity onPress={()=>{  router.replace(item.href)}} key={index} style={styles.settingItem}>
+        <TouchableOpacity onPress={()=>{  router.replace(`/Screens${item.href}`)}} key={index} style={styles.settingItem}>
           <Link className='bg-red-300' href={item.href} asChild>
             <View  style={styles.settingItemContent}>
               <Ionicons name={item.icon} size={24} color="#333" />
