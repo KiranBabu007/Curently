@@ -19,7 +19,7 @@ const SettingsScreen = () => {
       {settingsData.map((item, index) => (
         <TouchableOpacity onPress={()=>{  router.replace(`/Screens${item.href}`)}} key={index} style={styles.settingItem}>
           
-            <View  style={styles.settingItemContent}>
+            <View style={styles.settingItemContent}>
               <Ionicons name={item.icon} size={24} color="#333" />
               <Text style={styles.settingLabel}>{item.label}</Text>
               <Ionicons name="chevron-forward" size={20} color="#888" />
