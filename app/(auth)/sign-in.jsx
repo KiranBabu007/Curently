@@ -37,7 +37,7 @@ const Signin = () => {
                 autoPlay
                 loop
                 
-    style={{ width: 200, height: 200 }}
+    style={{ width:400, height: 400 }}
             />
         <Text style={styles.title}>Login</Text>
         <View style={styles.inputView}>

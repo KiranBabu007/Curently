@@ -36,7 +36,7 @@ const Signup = () => {
         speed={0.5}
         autoPlay
         loop
-        style={{ width: 200, height: 200 }}
+        style={{ width: 400, height: 400 }}
       />
       <Text style={styles.title}>Sign up</Text>
       <View style={styles.inputView}>
