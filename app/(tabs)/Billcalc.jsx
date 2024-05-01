@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
   priceDetailContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 5,
+    marginBottom: 2,
   },
   cardTitle: {
     fontSize: 20,
