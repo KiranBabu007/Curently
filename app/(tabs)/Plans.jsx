@@ -101,28 +101,19 @@ const Plans = () => {
         <View style={styles.instructionsCard}>
         <Text style={styles.cardTitle}>Instructions:</Text>
         <View style={styles.bulletPoint}>
-          <Text style={styles.bulletText}>1. Lorem ipsum dolor sit amet.</Text>
+          <Text style={styles.bulletText}>1. Here you can set plans by choosing the units under which you intend to reduce consumption.</Text>
         </View>
         <View style={styles.bulletPoint}>
-          <Text style={styles.bulletText}>2. Consectetur adipiscing elit.</Text>
+          <Text style={styles.bulletText}>2. Select the appropriate units by checking the corresponding price it produces.</Text>
         </View>
         <View style={styles.bulletPoint}>
-          <Text style={styles.bulletText}>3. Sed do eiusmod tempor incididunt.</Text>
+          <Text style={styles.bulletText}>3. You can add the email address to which the alerts should be sent in the settings tab.</Text>
         </View>
         <View style={styles.bulletPoint}>
-          <Text style={styles.bulletText}>4. Sed do eiusmod tempor incididunt.</Text>
+          <Text style={styles.bulletText}>4. Alerts will be sent as notifications as well as through the email address.</Text>
         </View>
         <View style={styles.bulletPoint}>
-          <Text style={styles.bulletText}>5. Sed do eiusmod tempor incididunt.</Text>
-        </View>
-        <View style={styles.bulletPoint}>
-          <Text style={styles.bulletText}>6. Sed do eiusmod tempor incididunt.</Text>
-        </View>
-        <View style={styles.bulletPoint}>
-          <Text style={styles.bulletText}>7. Sed do eiusmod tempor incididunt.</Text>
-        </View>
-        <View style={styles.bulletPoint}>
-          <Text style={styles.bulletText}>8. Sed do eiusmod tempor incididunt.</Text>
+          <Text style={styles.bulletText}>5. Alerts are sent based on your usage according to the limit that you have set.</Text>
         </View>
       </View>
       </View>
