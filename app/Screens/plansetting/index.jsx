@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-nativ
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { collection, addDoc,updateDoc,doc } from 'firebase/firestore';
 import { firestore } from '../../../firebaseConfig';
+import { router } from 'expo-router';
 
 const Plansetting = () => {
   const [email, setEmail] = useState('');
@@ -22,8 +23,16 @@ const Plansetting = () => {
 
   };
 
+  const handleBackButton = () => {
+    // Add your function here, for example:
+    router.replace('Settings')
+  };
+
   return (
     <SafeAreaView style={styles.container}>
+      <TouchableOpacity onPress={handleBackButton} style={styles.backButton}>
+        <Text style={[styles.buttonText, { color: 'blue' }]}>Back</Text>
+      </TouchableOpacity>
       <Text style={styles.title}>Add Email</Text>
       <View style={styles.inputContainer}>
         <TextInput
@@ -75,6 +84,12 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  backButton: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
+    marginTop: 20
   },
 });
 

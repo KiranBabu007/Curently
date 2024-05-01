@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-nativ
 import { getAuth } from 'firebase/auth';
 import { collection, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { firestore } from '../../../firebaseConfig';
-
+import { router } from 'expo-router';
 const Index = () => {
   const [userData, setUserData] = useState(null);
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -50,9 +50,16 @@ const Index = () => {
     }
   };
 
+  const handleBackButtonClick = () => {
+    router.replace('/Settings')
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Account Details</Text>
+      <TouchableOpacity style={styles.backButton} onPress={handleBackButtonClick}>
+        <Text style={styles.backButtonText}>Back</Text>
+      </TouchableOpacity>
       <View style={styles.infoContainer}>
         <Text style={styles.label}>Name: </Text>
         <Text style={styles.text}>{userData ? userData.name : 'Loading...'}</Text>
@@ -130,6 +137,18 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 16,
+  },
+  backButton: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
+    padding: 10,
+  },
+  backButtonText: {
+    fontSize: 16,
+    color: 'blue',
+    fontWeight: 'bold',
+    marginTop: 20
   },
 });
 
