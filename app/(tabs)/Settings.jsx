@@ -1,22 +1,29 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { router } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 
-export default Settings = () => {
-  
-
-  const goToPlanSettingsScreen = () => {
-    router.replace('/Screens/plansetting')
-  };
+const SettingsScreen = () => {
+  const settingsData = [
+    { icon: 'person-outline', label: 'Account' },
+    { icon: 'card-outline', label: 'My subscription' },
+    { icon: 'settings-outline', label: 'General settings' },
+    { icon: 'lock-closed-outline', label: 'Privacy settings' },
+    { icon: 'notifications-outline', label: 'Notification settings' },
+    { icon: 'moon-outline', label: 'Appearance settings' },
+    { icon: 'build-outline', label: 'Advanced settings' },
+    { icon: 'help-circle-outline', label: 'Help and support' },
+    { icon: 'log-out-outline', label: 'Sign out' },
+  ];
 
   return (
     <View style={styles.container}>
-      
-      <TouchableOpacity onPress={goToPlanSettingsScreen} style={styles.cardButton}>
-        <View style={styles.card}>
-          <Text style={styles.cardText}>Alert Settings</Text>
-        </View>
-      </TouchableOpacity>
+      {settingsData.map((item, index) => (
+        <TouchableOpacity key={index} style={styles.settingItem}>
+          <Ionicons name={item.icon} size={24} color="#333" />
+          <Text style={styles.settingLabel}>{item.label}</Text>
+          <Ionicons name="chevron-forward-outline" size={20} color="#888" />
+        </TouchableOpacity>
+      ))}
     </View>
   );
 };
@@ -24,29 +31,21 @@ export default Settings = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'start',
+    backgroundColor: '#fff',
+    paddingHorizontal: 16,
+  },
+  settingItem: {
+    flexDirection: 'row',
     alignItems: 'center',
+    paddingVertical: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#eee',
   },
-  cardButton: {
-    width: '90%',
-    height: '20%', // 1/4th of the phone's height
-  },
-  card: {
-    backgroundColor: '#f2f2f2',
-    padding: 20,
-    borderRadius: 10,
-    width: '90%',
-    shadowColor: 'blue',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4
-  },
-  cardText: {
-    fontSize: 20,
-    fontWeight: 'bold',
+  settingLabel: {
+    flex: 1,
+    marginLeft: 16,
+    fontSize: 16,
   },
 });
+
+export default SettingsScreen;
