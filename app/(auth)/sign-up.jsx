@@ -1,16 +1,20 @@
 import React, { useState } from 'react'
-import { Alert, Button, Image, Pressable, SafeAreaView, StyleSheet, Switch, Text, TextInput, View } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, TextInput, View, Pressable } from 'react-native'
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from '../../firebaseConfig'
+import { collection, doc, setDoc } from 'firebase/firestore';
+import { firestore } from '../../firebaseConfig';
 import LottieView from 'lottie-react-native';
 import { router } from 'expo-router';
 
 const Signup = () => {
   const auth = getAuth();
+  const [name, setName] = useState(""); 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [passwordError, setPasswordError] = useState("");
+  const usersCollectionRef = collection(firestore, 'users');
 
   const handleSignup = () => {
     if (password.length < 6) {
@@ -21,7 +25,19 @@ const Signup = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        router.replace('/Home');
+        // Set user data with email as document ID
+        const userDocRef = doc(usersCollectionRef, email);
+        setDoc(userDocRef, {
+          name: name,
+          email: email
+        })
+        .then(() => {
+          console.log("User data added successfully");
+          router.replace('/Home');
+        })
+        .catch((error) => {
+          console.error('Error adding user data: ', error);
+        });
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -29,6 +45,7 @@ const Signup = () => {
         // Handle error
       });
   }
+  
   return (
     <SafeAreaView style={styles.container}>
       <LottieView
@@ -40,6 +57,15 @@ const Signup = () => {
       />
       <Text style={styles.title}>Sign up</Text>
       <View style={styles.inputView}>
+        <TextInput
+          style={styles.input}
+          placeholder='NAME'
+          value={name}
+          onChangeText={setName}
+          autoCorrect={false}
+          autoCapitalize='none'
+          placeholderTextColor='rgba(0, 0, 0, 0.5)'
+        />
         <TextInput
           style={styles.input}
           placeholder='EMAIL'
