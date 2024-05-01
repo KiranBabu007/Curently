@@ -9,7 +9,7 @@ const SettingsScreen = () => {
     { icon: 'lock-closed', label: 'Privacy settings', href: '/privacy-settings' },
     { icon: 'notifications', label: 'Notification settings', href: '/notification-settings' },
     { icon: 'leaf', label: 'Plan Setting', href: '/plansetting' },
-    { icon: 'help-circle', label: 'Help and support', href: '/help-and-support' },
+    { icon: 'help-circle', label: 'Help and support', href: '/help' },
     { icon: 'log-out', label: 'Sign out', href: '/sign-out' },
   ];
 

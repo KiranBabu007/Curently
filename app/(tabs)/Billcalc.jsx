@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet,ActivityIndicator } from 'react-native';
 import axios from 'axios';
-import { collection, addDoc, Timestamp,getDocs } from 'firebase/firestore';
+
 import { app, database, firestore } from '../../firebaseConfig';
 import { ref, onValue } from 'firebase/database';
-
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 
@@ -15,6 +15,8 @@ const FormPage = () => {
   const [responseData, setResponseData] = useState(null);
   const [kwh,setkwh] =useState() 
   const [consumed,setconsumed] =useState(false) // State to store the response data
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleOneMonthPress = () => {
     setIsOneMonth(!isOneMonth);
@@ -27,6 +29,7 @@ const FormPage = () => {
   };
 
   const handleSubmit = () => {
+    setIsLoading(true);
     console.log("Units Consumed:", unitsConsumed);
     console.log("One Month:", isOneMonth);
     console.log("Two Month:", isTwoMonth);
@@ -63,10 +66,12 @@ const FormPage = () => {
       .request(config)
       .then((response) => {
         console.log(JSON.stringify(response.data));
-        setResponseData(response.data); // Store the response data in state
+        setResponseData(response.data);
+        setIsLoading(false); // Store the response data in state
       })
       .catch((error) => {
         console.log(error);
+        setIsLoading(false);
       });
   };
   const handlekwh =()=>{
@@ -104,7 +109,7 @@ const FormPage = () => {
         />
       </View> 
       <View>
-      <TouchableOpacity className="mb-10" style={[styles.checkbox, consumed && styles.checkedCheckbox, { borderColor: '#ADD8E6' }]}
+      <TouchableOpacity className="mb-6" style={[styles.checkbox, consumed && styles.checkedCheckbox, { borderColor: '#ADD8E6' }]}
       onPress={handlekwh}><Text style={[styles.checkboxText,
         consumed && styles.checkedCheckboxText,]}>Use Current Consumed Units</Text>
       </TouchableOpacity>
@@ -138,28 +143,42 @@ const FormPage = () => {
       </View>
 
       
-      
-{responseData && (
-  <View style={styles.cardContainer}>
-    <Text style={styles.cardTitle}>Price Details</Text>
-    {Object.entries(responseData.result_data.tariff_values).map(([key, value]) => {
-      // Skip rendering if the key is "bill_total"
-      if (key === "bill_total") {
-        return null;
-      }
-      return (
-        <View key={key} style={styles.priceDetailContainer}>
-          <Text style={styles.priceLabel}>{value.descr}</Text>
-          <Text style={styles.priceValue}>{value.value}</Text>
-        </View>
-      );
-    })}
-    <View style={[styles.priceDetailContainer, styles.totalContainer]}>
-      <Text style={styles.priceLabel}>Total Amount:Rs</Text>
-      <Text style={styles.totalValue}>{responseData.result_data.tariff_values.bill_total.value}</Text>
-    </View>
-  </View>
-)}
+      {isLoading ? (
+        <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#6A5ACD" />
+      </View>// Show activity indicator while loading
+      ) : (
+        responseData && (
+          <LinearGradient
+          colors={['#F0F8FF', '#ADD8E6']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          style={[styles.cardContainer, { shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.5, shadowRadius: 2, elevation: 5 }]}
+         >
+          <Text style={[styles.cardTitle, { color: '#080e2c' }]}>Price Details</Text>
+          <View style={styles.itemHeaderContainer}>
+   <Text style={[styles.itemHeader, { color: '#0f0ade' }]}>Item</Text>
+   <Text style={[styles.priceHeader, { color: '#0f0ade' }]}>Price</Text>
+ </View>
+          {Object.entries(responseData.result_data.tariff_values).map(([key, value]) => {
+            // Skip rendering if the key is "bill_total"
+            if (key === "bill_total") {
+              return null;
+            }
+            return (
+              <View key={key} style={styles.priceDetailContainer}>
+                <Text style={[styles.priceLabel, { color: '#0f0ade' }]}>{value.descr}</Text>
+                <Text style={[styles.priceValue, { color: '#0f0ade' }]}>{value.value}</Text>
+              </View>
+            );
+          })}
+          <View style={[styles.priceDetailContainer, styles.totalContainer]}>
+            <Text className="font-extrabold text-xl" style={[styles.priceLabel, { color: '#0f0ade' }]}>Total Amount:</Text>
+            <Text className="font-semibold " style={[styles.totalValue, { color: '#0f0ade' }]}>{`Rs ${responseData.result_data.tariff_values.bill_total.value}`}</Text>
+          </View>
+         </LinearGradient>
+        )
+      )}
     </View>
   );
 };
@@ -220,7 +239,7 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   checkedCheckbox: {
-    backgroundColor: 'blue',
+    backgroundColor: '#0f0ade',
     padding: 5,
     shadowOffset: { width: 0, height: 2 },
   },
@@ -231,7 +250,7 @@ const styles = StyleSheet.create({
     width: '100%', // Changed width to 100%
   },
   button: {
-    backgroundColor: 'blue',
+    backgroundColor: '#0f0ade',
     borderRadius: 10,
     padding: 10,
     alignItems: 'center',
@@ -269,6 +288,24 @@ const styles = StyleSheet.create({
   },
   totalValue: {
     fontSize: 18,
+    fontWeight: 'bold',
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  itemHeaderContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 10,
+  },
+  itemHeader: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  priceHeader: {
+    fontSize: 16,
     fontWeight: 'bold',
   },
 });
