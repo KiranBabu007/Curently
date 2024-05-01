@@ -1,22 +1,35 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Pressable, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { Link } from 'expo-router';
 import { router } from 'expo-router';
 
-export default Settings = () => {
-  
-
-  const goToPlanSettingsScreen = () => {
-    router.replace('/Screens/plansetting')
-  };
+const SettingsScreen = () => {
+  const settingsData = [
+    { icon: 'person', label: 'Account', href: '/account' },
+    { icon: 'card', label: 'My subscription', href: '/subscription' },
+    { icon: 'settings', label: 'General settings', href: '/general-settings' },
+    { icon: 'lock-closed', label: 'Privacy settings', href: '/privacy-settings' },
+    { icon: 'notifications', label: 'Notification settings', href: '/notification-settings' },
+    { icon: 'leaf', label: 'Plan Setting', href: '/plansetting' },
+    { icon: 'build', label: 'Advanced settings', href: '/advanced-settings' },
+    { icon: 'help-circle', label: 'Help and support', href: '/help-and-support' },
+    { icon: 'log-out', label: 'Sign out', href: '/Screens/sign-out' },
+  ];
 
   return (
     <View style={styles.container}>
-      
-      <TouchableOpacity onPress={goToPlanSettingsScreen} style={styles.cardButton}>
-        <View style={styles.card}>
-          <Text style={styles.cardText}>Alert Settings</Text>
-        </View>
-      </TouchableOpacity>
+      {settingsData.map((item, index) => (
+        <TouchableOpacity onPress={()=>{  router.replace(`/Screens${item.href}`)}} key={index} style={styles.settingItem}>
+          <Link className='bg-red-300' href={item.href} asChild>
+            <View  style={styles.settingItemContent}>
+              <Ionicons name={item.icon} size={24} color="#333" />
+              <Text style={styles.settingLabel}>{item.label}</Text>
+              <Ionicons name="chevron-forward-outline" size={20} color="#888" />
+            </View>
+          </Link>
+        </TouchableOpacity>
+      ))}
     </View>
   );
 };
@@ -24,30 +37,23 @@ export default Settings = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'start',
+    backgroundColor: '#fff',
+    paddingHorizontal: 16,
+  },
+  settingItem: {
+    paddingVertical: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#eee',
+  },
+  settingItemContent: {
+    flexDirection: 'row',
     alignItems: 'center',
   },
-  cardButton: {
-    marginTop: 20,
-    width: '90%',
-    height: '20%', // 1/4th of the phone's height
-  },
-  card: {
-    backgroundColor: '#f2f2f2',
-    padding: 20,
-    borderRadius: 10,
-    width: '100%',
-    shadowColor: 'blue',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4
-  },
-  cardText: {
-    fontSize: 20,
-    fontWeight: 'bold',
+  settingLabel: {
+    flex: 1,
+    marginLeft: 16,
+    fontSize: 16,
   },
 });
+
+export default SettingsScreen;
