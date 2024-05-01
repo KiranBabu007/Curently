@@ -22,7 +22,7 @@ const SettingsScreen = () => {
             <View  style={styles.settingItemContent}>
               <Ionicons name={item.icon} size={24} color="#333" />
               <Text style={styles.settingLabel}>{item.label}</Text>
-              <Ionicons name="chevron-forward-outline" size={20} color="#888" />
+              <Ionicons name="chevron-forward" size={20} color="#888" />
             </View>
          
         </TouchableOpacity>
