@@ -17,7 +17,7 @@ const MyCalendar = () => {
     setIsLoading(true); // Set loading state to true before fetching data
     try {
       if (!selectedDate) {
-        console.warn('Please select a date on the calendar.');
+        // console.warn('Please select a date on the calendar.');
         setIsLoading(false); // Set loading state to false if no date is selected
         return;
       }

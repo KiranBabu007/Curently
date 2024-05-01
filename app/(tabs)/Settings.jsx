@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cardButton: {
+    marginTop: 20,
     width: '90%',
     height: '20%', // 1/4th of the phone's height
   },
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f2f2f2',
     padding: 20,
     borderRadius: 10,
-    width: '90%',
+    width: '100%',
     shadowColor: 'blue',
     shadowOffset: {
       width: 0,

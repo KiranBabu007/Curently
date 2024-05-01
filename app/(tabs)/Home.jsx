@@ -70,7 +70,7 @@ const Home = () => {
         setpowerValue(data.power);
         addDataToFirestore(data);
         getlimit(data);
-        if (previousValue !== '' && (data.current - previousValue) > 4) {
+        if (previousValue !== '' && (data.current - previousValue) > 3) {
           schedulePushNotification("Sudden increase in current detected");
           getemail(1);
           
