@@ -217,7 +217,7 @@ return (
         source={require('../../assets/power.png')}
           resizeMode="cover"
         />
-          <Text style={styles.cardText}>Power  </Text>
+          <Text  style={[styles.cardText,{right:80}]}>Power  </Text>
           <View style={styles.outputBox}>
             <Text style={styles.outputText}>{powerValue} W</Text>
           </View>
@@ -230,7 +230,7 @@ return (
     <View className="flex" style={styles.cardContainer}>
       <View className="bg-slate-200"  style={styles.card}>
         <View   style={styles.cardContent}>
-        <Image  style={{width: 30, height: 50}}
+        <Image  style={{width: 50, height: 50}}
         source={require('../../assets/lightning.png')}
           resizeMode="cover"
         />
@@ -322,16 +322,15 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
     fontSize: 18,
-    fontWeight: 'bold',
-    fontFamily: 'Montserrat-Variable',
+   
+    fontFamily: 'OpenSans-Variable',
     margin:10
   },
   currenttext: {
     margin: 10,
     textAlign: 'center',
     fontSize: 20,
-    fontWeight: 'bold',
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   imageContainer: {
     height: 200,
@@ -362,10 +361,11 @@ const styles = StyleSheet.create({
     height:20
   },
   cardText: {
-    fontSize: 16,
+    fontSize: 17,
 
     right:48,
-    fontWeight: 'bold',
+    
+    fontFamily: 'OpenSans-Variable',
 
   },
   outputBox: {
@@ -374,8 +374,8 @@ const styles = StyleSheet.create({
   },
   outputText: {
     fontSize: 16,
-    fontWeight: 'bold',
-    fontFamily: 'Montserrat-Variable',
+   
+    fontFamily: 'OpenSans-Variable',
   },
   roomsContainer: {
     marginLeft:16,
@@ -385,7 +385,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     marginBottom: 5,
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   roomCard: {
     backgroundColor: '#fff',
@@ -396,16 +396,15 @@ const styles = StyleSheet.create({
     overflow: 'hidden', 
   },
   roomName: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 17,
     margin:3,
-    fontFamily: 'Monserrat-Italic',
+    fontStyle:'italic'
   },
   roomConsumption: {
     fontSize: 14,
     color: '#666',
-    fontWeight: 'bold',
-    fontFamily: 'Monserrat-Italic',
+    fontStyle:'italic'
+  
   },
   roomImageContainer: {
     borderTopLeftRadius: 8,
