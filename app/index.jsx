@@ -97,8 +97,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     color: 'black',
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '900',
     textAlign: 'center',
+    fontFamily: 'Montserrat-Variable',
   },
 });
 

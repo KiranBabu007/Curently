@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+    fontFamily: 'Montserrat-Variable',
   },
   infoContainer: {
     flexDirection: 'row',
@@ -111,9 +112,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     marginRight: 5,
+    fontFamily: 'Montserrat-Variable',
   },
   text: {
     fontSize: 16,
+    fontFamily: 'Montserrat-Variable',
+    fontWeight:'600'
   },
   inputContainer: {
     flexDirection: 'row',
@@ -139,6 +143,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 16,
+    fontFamily: 'Montserrat-Variable',
   },
   backButton: {
     position: 'absolute',
@@ -150,7 +155,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'blue',
     fontWeight: 'bold',
-    marginTop: 20
+    marginTop: 20,
+    fontFamily: 'Montserrat-Variable',
   },
 });
 
