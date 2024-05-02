@@ -43,8 +43,8 @@ const App = () => {
       {showSplash ? (
         <SplashScreen />
       ) : (
-        <ImageBackground // Use ImageBackground for the page background
-          source={require('../assets/Welcome.jpg')} // Provide the image source
+        <View // Use ImageBackground for the page background
+          // Provide the image source
           style={styles.background} // Apply background image style
         >
           <View style={styles.container2}>
@@ -61,7 +61,7 @@ const App = () => {
               <Link href="/sign-up" style={styles.button}>Sign Up</Link>
             </View>
           </View>
-        </ImageBackground>
+        </View>
       )}
     </>
   );
