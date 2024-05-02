@@ -5,8 +5,7 @@ import { app, database, firestore ,auth} from '../../firebaseConfig';
 import { ref, onValue } from 'firebase/database';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
-import { multiFactor } from 'firebase/auth';
-import Icon from 'react-native-vector-icons/FontAwesome'; 
+
 import emailjs from '@emailjs/react-native';
 let notificationStatus = {}; 
 Notifications.setNotificationHandler({
@@ -207,12 +206,19 @@ return (
       />
     </View>
     <View style={styles.infoContainer}>
-      <Text style={styles.text}>Current Consumption </Text>
-      <Text style={styles.currenttext}>{currentValue} A</Text>
+      <Text style={styles.text}>Live Current Consumption </Text>
+      <View className="flex flex-row justify-center items-center" styles={{}}>
+        <Text style={styles.currenttext}>{currentValue} A</Text>
+      </View>
+      
     </View>
     <View className=" flex" style={styles.cardContainer}>
       <View className="bg-slate-200"  style={styles.card}>
         <View   style={styles.cardContent}>
+        <Image  style={{width: 30, height: 50}}
+        source={require('../../assets/lightning.png')}
+          resizeMode="cover"
+        />
           <Text style={styles.cardText}>Power Consumption </Text>
           <View style={styles.outputBox}>
             <Text style={styles.outputText}>{powerValue} W</Text>
@@ -315,7 +321,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 18,
     fontWeight: '400',
-    fontFamily: 'Audiowide-Regular'
+    fontFamily: 'Audiowide-Regular',
+    margin:10
   },
   currenttext: {
     margin: 10,
