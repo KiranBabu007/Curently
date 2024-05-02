@@ -210,14 +210,14 @@ return (
       </View>
       
     </View>
-    <View className=" flex" style={styles.cardContainer}>
+    <View className=" flex " style={styles.cardContainer}>
       <View className="bg-slate-200"  style={styles.card}>
         <View   style={styles.cardContent}>
-        <Image  style={{width: 30, height: 50}}
-        source={require('../../assets/lightning.png')}
+        <Image  style={{width: 50, height: 50}}
+        source={require('../../assets/power.png')}
           resizeMode="cover"
         />
-          <Text style={styles.cardText}>Power Consumption </Text>
+          <Text style={styles.cardText}>Power  </Text>
           <View style={styles.outputBox}>
             <Text style={styles.outputText}>{powerValue} W</Text>
           </View>
@@ -230,6 +230,10 @@ return (
     <View className="flex" style={styles.cardContainer}>
       <View className="bg-slate-200"  style={styles.card}>
         <View   style={styles.cardContent}>
+        <Image  style={{width: 30, height: 50}}
+        source={require('../../assets/lightning.png')}
+          resizeMode="cover"
+        />
           <Text style={styles.cardText}>KWH </Text>
           <View style={styles.outputBox}>
             <Text style={styles.outputText}>{kwh} Units</Text>
@@ -359,8 +363,7 @@ const styles = StyleSheet.create({
   },
   cardText: {
     fontSize: 16,
-    fontFamily: 'Montserrat-Variable',
-    fontWeight: 'bold',
+
   },
   outputBox: {
     padding: 1,
