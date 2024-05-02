@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, ActivityIndicator } from 'react-native';
+import { View, StyleSheet, Text, ActivityIndicator, Image } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import { firestore } from '../../firebaseConfig';
 import { collection, getDocs, query, where } from 'firebase/firestore';
-import { LinearGradient } from 'expo-linear-gradient';
 import { FontAwesome5 } from '@expo/vector-icons';
 
 const MyCalendar = () => {
@@ -53,32 +52,38 @@ const MyCalendar = () => {
         />
       </View>
 
+      {!selectedDate && <View style={styles.noDataContainer}>
+             
+             <Text style={styles.noDataText}>Click on any date to show the energy consumption data.</Text>
+             <Image source={require('../../assets/calendar.png')} style={styles.placeholderImage} />
+           </View>}
+
       {isLoading ? (
         <ActivityIndicator size="large" color="#00adf5" style={styles.activityIndicator} />
       ) : (
         <View style={styles.dataContainer}>
-          {fetchedData ? (
-            <LinearGradient
-            colors={['#e6f7ff', '#ffffff']} 
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 0 }}
-              style={styles.dataCardContainer}
-            >
-              <Text className="font-bold text-2sm " style={styles.dataCardTitle}>Energy Consumption Data</Text>
-               <Text className="font-bold text-2sm" style={styles.dataCardSubtitle}>for {selectedDate}</Text>
+          {fetchedData && 
+            <View style={styles.dataCardContainer}>
+              <Text className="font-bold text-2sm" style={styles.dataCardTitle}>
+                Energy Consumption Data
+              </Text>
+              <Text className="font-bold text-2sm" style={styles.dataCardSubtitle}>
+                for {selectedDate}
+              </Text>
+              <View>
+                <Image source={require('../../assets/calendarbulb.png')} style={styles.dataCardImage} />
+              </View>
+               
               <View className="flex flex-row m-5 space-x-2" style={styles.maxEnergyContainer}>
-                <FontAwesome5 name="bolt" size={28} color="gold" />
-                <Text  className="font-extrabold text-xl " style={styles.maxEnergyText}>
-                  {Math.max(...fetchedData.map((item) => item.energy))} KwH
+                
+                <Text className="font-extrabold text-xl" style={styles.maxEnergyText}>
+                  {Math.max(...fetchedData.map((item) => item.energy))} KwH  
                 </Text>
+                <FontAwesome5 name="bolt" size={28} color="gold" />
               </View>
              
-            </LinearGradient>
-          ) : (
-            <View style={styles.noDataContainer}>
-              <Text style={styles.noDataText}>Click on any date to show the energy consumption data.</Text>
             </View>
-          )}
+           }
         </View>
       )}
     </View>
@@ -105,7 +110,6 @@ const styles = StyleSheet.create({
   dataContainer: {
     backgroundColor: '#fff',
     borderRadius: 8,
-    
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -114,40 +118,59 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 2,
-    width:300,
+    width: 300,
   },
   dataCardContainer: {
-    padding:16,
+    padding: 8,
     borderRadius: 8,
     alignItems: 'center',
-    margin:0,
+    width: 300,
   },
-  dataCardTitle:{
+  dataCardTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     color: '#333',
   },
-  noDataCard: {
-    backgroundColor: '#fff',
-    borderRadius: 8,
-    padding: 16,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 2,
+  dataCardSubtitle: {
+    fontSize: 16,
+    color: '#666',
+  },
+  maxEnergyContainer: {
+    flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: 10,
+  },
+  maxEnergyText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#333',
+    marginLeft: 10,
+  },
+  dataCardImage: {
+    width: 200,
+    height: 200,
+    resizeMode:'contain',
+    marginTop: 10,
+  },
+  noDataContainer: {
+    flex: 1,
+    marginTop:80,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 16,
+    height:300
   },
   noDataText: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#333',
   },
-  noDataContainer: {
-    padding: 10
+  placeholderImage: {
+    width: 300,
+    height: 400,
+    resizeMode: 'contain',
+    bottom:100,
+    right: 20,
+    
   },
 });
 

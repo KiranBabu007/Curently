@@ -207,13 +207,13 @@ return (
       />
     </View>
     <View style={styles.infoContainer}>
-      <Text style={styles.text}>Current Consumption :</Text>
+      <Text style={styles.text}>Current Consumption </Text>
       <Text style={styles.currenttext}>{currentValue} A</Text>
     </View>
     <View className=" flex" style={styles.cardContainer}>
       <View className="bg-slate-200"  style={styles.card}>
         <View   style={styles.cardContent}>
-          <Text style={styles.cardText}>Power Consumption :</Text>
+          <Text style={styles.cardText}>Power Consumption </Text>
           <View style={styles.outputBox}>
             <Text style={styles.outputText}>{powerValue} W</Text>
           </View>
@@ -226,7 +226,7 @@ return (
     <View className="flex" style={styles.cardContainer}>
       <View className="bg-slate-200"  style={styles.card}>
         <View   style={styles.cardContent}>
-          <Text style={styles.cardText}>KWH :</Text>
+          <Text style={styles.cardText}>KWH </Text>
           <View style={styles.outputBox}>
             <Text style={styles.outputText}>{kwh} Units</Text>
           </View>
@@ -352,7 +352,7 @@ const styles = StyleSheet.create({
   },
   cardText: {
     fontSize: 16,
-    fontWeight: 'bold',
+
   },
   outputBox: {
     padding: 1,
@@ -383,11 +383,13 @@ const styles = StyleSheet.create({
   roomName: {
     fontSize: 16,
     fontWeight: 'bold',
-    margin:3
+    margin:3,
+    fontStyle:'italic'
   },
   roomConsumption: {
     fontSize: 14,
     color: '#666',
+    fontStyle:'italic'
   },
   roomImageContainer: {
     borderTopLeftRadius: 8,
