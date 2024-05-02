@@ -34,8 +34,7 @@ const App = () => {
       {showSplash ? (
         <SplashScreen />
       ) : (
-        <View // Use ImageBackground for the page background
-          // Provide the image source
+        <View 
           style={styles.background} // Apply background image style
         >
           <View style={styles.container2}>
@@ -45,7 +44,6 @@ const App = () => {
               <Text className="text-5xl font-bold mb-5 ">Curently</Text>
               <Text className= " font-light text-xl">     Think Act Save</Text>
             </View>
-            
             
             <View style={styles.buttonsContainer}>
               <Link href="/sign-in" style={styles.button}>Sign In</Link>
