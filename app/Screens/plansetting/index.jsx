@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { collection, addDoc,updateDoc,doc } from 'firebase/firestore';
 import { firestore } from '../../../firebaseConfig';
 import { router } from 'expo-router';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const Plansetting = () => {
   const [email, setEmail] = useState('');
@@ -31,7 +32,7 @@ const Plansetting = () => {
   return (
     <SafeAreaView style={styles.container}>
       <TouchableOpacity onPress={handleBackButton} style={styles.backButton}>
-        <Text style={[styles.buttonText, { color: 'blue' }]}>Back</Text>
+      <Icon name="arrow-back" size={24} color="#2196F3" />
       </TouchableOpacity>
       <Text style={styles.title}>Add Email</Text>
       <View style={styles.inputContainer}>
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
   backButton: {
     position: 'absolute',
     top: 20,
-    right: 20,
+    left: 20,
     marginTop: 20
   },
   instructionsCard: {

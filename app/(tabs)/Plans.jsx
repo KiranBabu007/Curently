@@ -43,7 +43,7 @@ const Plans = () => {
   };  
 
   const handleSetPrice = () => {
-    setPrice(selectedMinute * 0.1); 
+    // setPrice(selectedMinute * 0.1); 
     let dataToUpdate = doc(firestore,'limit','tyv0cGkSgFqqylJzHMyc');
     updateDoc(dataToUpdate,{
         limit: selectedMinute
@@ -91,11 +91,9 @@ const Plans = () => {
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity onPress={handleSetPrice} style={styles.button}>
-            <Text style={styles.buttonText}>Set</Text>
+            <Text style={styles.buttonText}>Set Plan</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={handleResetPrice} style={styles.button}>
-            <Text style={styles.buttonText}>Reset</Text>
-          </TouchableOpacity>
+          
         </View>
         <LinearGradient
           colors={['#F0F8FF', '#ADD8E6']}
@@ -184,7 +182,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   button: {
-    backgroundColor: 'lightblue',
+    backgroundColor: 'blue',
     paddingHorizontal: 20,
     paddingVertical: 10,
     marginHorizontal: 5,
@@ -193,7 +191,10 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
     fontWeight: 'bold',
+
     fontFamily: 'Montserrat-Variable',
+    color:"lightgrey"
+
   },
   instructionsCard: {
     borderRadius: 10,

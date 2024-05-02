@@ -6,7 +6,6 @@ import { router } from 'expo-router';
 const SettingsScreen = () => {
   const settingsData = [
     { icon: 'person', label: 'Account', href: '/account' },
-    { icon: 'lock-closed', label: 'Privacy settings', href: '/privacy-settings' },
     { icon: 'notifications', label: 'Notification settings', href: '/notification-settings' },
     { icon: 'leaf', label: 'Plan Setting', href: '/plansetting' },
     { icon: 'help-circle', label: 'Help and support', href: '/help' },
@@ -27,8 +26,9 @@ const SettingsScreen = () => {
         </TouchableOpacity>
       ))}
       <Image 
+      className="ml-14 mt-8"
         source={require('../../assets/settings.png')}
-        style={{ width: 380, height: 350 }}
+        style={{ width: 250, height: 300 }}
       />
     </View>
   );
