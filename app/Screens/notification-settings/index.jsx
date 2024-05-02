@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, Switch, StyleSheet, TouchableOpacity } from 'react-native';
 import { router } from 'expo-router';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
 const Index = () => {
   const [notificationEnabled, setNotificationEnabled] = useState(false);
 
@@ -18,7 +20,7 @@ const Index = () => {
     <View style={styles.container}>
       <Text style={styles.header}>Notification Settings</Text>
       <TouchableOpacity style={styles.backButton} onPress={handleBackButtonClick}>
-        <Text style={styles.backButtonText}>Back</Text>
+      <Icon name="arrow-back" size={24} color="#2196F3" />
       </TouchableOpacity>
       <View style={styles.switchContainer}>
         <Text style={styles.label}>Notification</Text>
@@ -49,8 +51,8 @@ const styles = StyleSheet.create({
   },
   backButton: {
     position: 'absolute',
-    top: 20,
-    right: 20,
+    top: 30,
+    left: 5,
     padding: 10,
   },
   backButtonText: {
