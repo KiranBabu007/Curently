@@ -52,9 +52,9 @@ const MyCalendar = () => {
         />
       </View>
 
-      {!selectedDate && <View style={styles.noDataContainer}>
+      {!selectedDate && <View  style={styles.noDataContainer}>
              
-             <Text style={styles.noDataText}>Click on any date to show the energy consumption data.</Text>
+             <Text className="text-center m-8" style={styles.noDataText}>Click on any date to show the energy consumption data.</Text>
              <Image source={require('../../assets/calendar.png')} style={styles.placeholderImage} />
            </View>}
 
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     height: 400,
     resizeMode: 'contain',
     bottom:100,
-    right: 20,
+    right: 10,
     
   },
 });
