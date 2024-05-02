@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Switch, StyleSheet, TouchableOpacity } from 'react-native';
 import { router } from 'expo-router';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { ImageBackground } from 'react-native';
 
 const Index = () => {
   const [notificationEnabled, setNotificationEnabled] = useState(false);
@@ -17,6 +18,10 @@ const Index = () => {
   };
 
   return (
+    <ImageBackground
+    source={require('../../../assets/backk.jpg')}
+    style={styles.backgroundImage}
+  >
     <View style={styles.container}>
       <Text style={styles.header}>Notification Settings</Text>
       <TouchableOpacity style={styles.backButton} onPress={handleBackButtonClick}>
@@ -27,6 +32,7 @@ const Index = () => {
         <Switch value={notificationEnabled} onValueChange={toggleNotification} />
       </View>
     </View>
+    </ImageBackground>
   );
 };
 
@@ -40,7 +46,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   switchContainer: {
     flexDirection: 'row',
@@ -49,13 +55,13 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 18,
     marginRight: 10,
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
     fontWeight: 'bold',
   },
   backButton: {
     position: 'absolute',
     top: 30,
-    left: 5,
+    left: 10,
     padding: 10,
   },
   backButtonText: {
@@ -63,7 +69,11 @@ const styles = StyleSheet.create({
     color: 'blue',
     fontWeight: 'bold',
     marginTop: 20,
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
+  },
+   backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
   },
 });
 

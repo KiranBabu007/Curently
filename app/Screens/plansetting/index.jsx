@@ -4,6 +4,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { collection, addDoc,updateDoc,doc } from 'firebase/firestore';
 import { firestore } from '../../../firebaseConfig';
 import { router } from 'expo-router';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { ImageBackground } from 'react-native';
 
 const Plansetting = () => {
   const [email, setEmail] = useState('');
@@ -29,9 +31,13 @@ const Plansetting = () => {
   };
 
   return (
+    <ImageBackground
+    source={require('../../../assets/backk.jpg')}
+    style={styles.backgroundImage}
+  >
     <SafeAreaView style={styles.container}>
       <TouchableOpacity onPress={handleBackButton} style={styles.backButton}>
-        <Text style={[styles.buttonText, { color: 'blue' }]}>Back</Text>
+      <Icon name="arrow-back" size={24} color="#2196F3" />
       </TouchableOpacity>
       <Text style={styles.title}>Add Email</Text>
       <View style={styles.inputContainer}>
@@ -52,6 +58,7 @@ const Plansetting = () => {
         </View>
       </View>
     </SafeAreaView>
+    </ImageBackground>
   );
 };
 
@@ -67,7 +74,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 40,
     marginTop: 30,
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   inputContainer: {
     flexDirection: 'row',
@@ -90,12 +97,12 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
     fontWeight: 'bold',
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   backButton: {
     position: 'absolute',
     top: 20,
-    right: 20,
+    left: 20,
     marginTop: 20
   },
   instructionsCard: {
@@ -116,7 +123,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   bulletPoint: {
     flexDirection: 'row',
@@ -127,7 +134,11 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     fontSize: 16,
     fontWeight: 'bold',
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
   },
 });
 

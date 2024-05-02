@@ -4,6 +4,8 @@ import { getAuth } from 'firebase/auth';
 import { collection, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { firestore } from '../../../firebaseConfig';
 import { router } from 'expo-router';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { ImageBackground } from 'react-native';
 const Index = () => {
   const [userData, setUserData] = useState(null);
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -55,10 +57,14 @@ const Index = () => {
   };
 
   return (
+    <ImageBackground
+    source={require('../../../assets/backk.jpg')}
+    style={styles.backgroundImage}
+  >
     <View style={styles.container}>
       <Text style={styles.header}>Account Details</Text>
       <TouchableOpacity style={styles.backButton} onPress={handleBackButtonClick}>
-        <Text style={styles.backButtonText}>Back</Text>
+      <Icon name="arrow-back" size={24} color="#2196F3" />
       </TouchableOpacity>
       <View style={styles.infoContainer}>
         <Text style={styles.label}>Name: </Text>
@@ -85,6 +91,7 @@ const Index = () => {
         </TouchableOpacity>
       </View>
     </View>
+    </ImageBackground>
   );
 };
 
@@ -99,7 +106,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   infoContainer: {
     flexDirection: 'row',
@@ -110,11 +117,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     marginRight: 5,
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   text: {
     fontSize: 16,
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
     fontWeight:'600'
   },
   inputContainer: {
@@ -141,12 +148,12 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 16,
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   backButton: {
     position: 'absolute',
-    top: 20,
-    right: 20,
+    top: 30,
+    left: 10,
     padding: 10,
   },
   backButtonText: {
@@ -154,7 +161,11 @@ const styles = StyleSheet.create({
     color: 'blue',
     fontWeight: 'bold',
     marginTop: 20,
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
   },
 });
 

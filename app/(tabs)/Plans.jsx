@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity,Image } from 'react-native';
 import { firestore } from '../../firebaseConfig';
 import { doc, updateDoc } from 'firebase/firestore';
 import { LinearGradient } from 'expo-linear-gradient';
+import { ImageBackground } from 'react-native';
 
 const Plans = () => {
   const [selectedMinute, setSelectedMinute] = useState(50);
@@ -66,6 +67,10 @@ const Plans = () => {
   }, [selectedMinute]);
 
   return (
+    <ImageBackground
+    source={require('../../assets/backk.jpg')}
+    style={styles.backgroundImage}
+  >
     <View style={styles.outerContainer}>
       <View style={styles.innerContainer}>
         <Text style={styles.title}>Select Units</Text>
@@ -124,6 +129,7 @@ const Plans = () => {
         </LinearGradient>
       </View>
     </View>
+    </ImageBackground>
   );
 };
 
@@ -216,6 +222,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     fontFamily: 'Montserrat-Variable',
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
   },
 });
 
