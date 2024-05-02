@@ -75,7 +75,7 @@ const Plans = () => {
   return (
     <View style={styles.outerContainer}>
       <View style={styles.innerContainer}>
-        <Text style={styles.title}>Select Units:</Text>
+        <Text style={styles.title}>Select Units</Text>
         <View style={styles.mainContainer}>
           <TouchableOpacity onPress={handleDecrement}>
             <Text style={[styles.triangleText, styles.triangleUp]}>▲</Text>

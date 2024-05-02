@@ -150,7 +150,7 @@ const FormPage = () => {
           style={styles.defaultImage}
           resizeMode="contain"
         />
-        <Text className="font-bold"> Enter Details and press Submit to get the bill.</Text>
+        <Text className="mt-5 text-2md font-light"> Enter Details and press Submit to get the bill.</Text>
         </View>
         
       )}
