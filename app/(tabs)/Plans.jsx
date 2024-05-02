@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity,Image } from 'react-native';
 import { firestore } from '../../firebaseConfig';
-import { doc,updateDoc } from 'firebase/firestore';
-const Plans = () => {
-  const id="tyv0cGkSgFqqylJzHMyc";
-  const [selectedMinute, setSelectedMinute] = useState(50);
-  const [price, setPrice] = useState(0); // State for the price
+import { doc, updateDoc } from 'firebase/firestore';
+import { LinearGradient } from 'expo-linear-gradient';
 
-  // Function to calculate price based on selected minute
+const Plans = () => {
+  const [selectedMinute, setSelectedMinute] = useState(50);
+  const [price, setPrice] = useState(0);
+
   const calculatePrice = (minute) => {
     const priceMap = {
       50: 218.00,
@@ -31,7 +31,7 @@ const Plans = () => {
       950: 8910.00,
       1000: 9354.00
     };
-    return priceMap[minute] || 0; // Return the corresponding price, default to 0 if not found
+    return priceMap[minute] || 0;
   };
 
   const handleIncrement = () => {
@@ -43,31 +43,24 @@ const Plans = () => {
   };  
 
   const handleSetPrice = () => {
-
-    // Set the price based on the selected minute, for example, multiplying it by some factor
-    setPrice(selectedMinute * 0.1); // For example, price is 10% of selected minute
-
-    
-      let dataToUpdate = doc(firestore,'limit',id)
-      updateDoc(dataToUpdate,{
-          limit: selectedMinute
-      })
-      .then(() => {
-          alert('Data Updated')           
-      })
-      .catch((err) => {
-          alert(err.message)
-      })
-  
-
+    setPrice(selectedMinute * 0.1); 
+    let dataToUpdate = doc(firestore,'limit','tyv0cGkSgFqqylJzHMyc');
+    updateDoc(dataToUpdate,{
+        limit: selectedMinute
+    })
+    .then(() => {
+        alert('Data Updated')           
+    })
+    .catch((err) => {
+        alert(err.message)
+    });
   };
 
   const handleResetPrice = () => {
-    setPrice(0); // Reset the price to 0
+    setPrice(0); 
   };
 
   useEffect(() => {
-    // Calculate price based on the selected minute whenever it changes
     const calculatedPrice = calculatePrice(selectedMinute);
     setPrice(calculatedPrice);
   }, [selectedMinute]);
@@ -77,14 +70,20 @@ const Plans = () => {
       <View style={styles.innerContainer}>
         <Text style={styles.title}>Select Units</Text>
         <View style={styles.mainContainer}>
-          <TouchableOpacity onPress={handleDecrement}>
-            <Text style={[styles.triangleText, styles.triangleUp]}>▲</Text>
+          <TouchableOpacity onPress={handleIncrement}>
+          <Image
+        style={styles.stretch}
+        source={require('../../assets/up.png')}
+      />
           </TouchableOpacity>
           <View style={styles.selectedItemContainer}>
             <Text style={styles.selectedMinuteText}>{selectedMinute}</Text>
           </View>
-          <TouchableOpacity onPress={handleIncrement}>
-            <Text style={[styles.triangleText, styles.triangleDown]}>▼</Text>
+          <TouchableOpacity onPress={handleDecrement}>
+          <Image
+        style={styles.stretch}
+        source={require('../../assets/down.png')}
+      />
           </TouchableOpacity>
         </View>
         <View style={styles.priceContainer}>
@@ -98,24 +97,31 @@ const Plans = () => {
             <Text style={styles.buttonText}>Reset</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.instructionsCard}>
-        <Text style={styles.cardTitle}>Instructions:</Text>
-        <View style={styles.bulletPoint}>
-          <Text style={styles.bulletText}>1. Here you can set plans by choosing the units under which you intend to reduce consumption.</Text>
-        </View>
-        <View style={styles.bulletPoint}>
-          <Text style={styles.bulletText}>2. Select the appropriate units by checking the corresponding price it produces.</Text>
-        </View>
-        <View style={styles.bulletPoint}>
-          <Text style={styles.bulletText}>3. You can add the email address to which the alerts should be sent in the settings tab.</Text>
-        </View>
-        <View style={styles.bulletPoint}>
-          <Text style={styles.bulletText}>4. Alerts will be sent as notifications as well as through the email address.</Text>
-        </View>
-        <View style={styles.bulletPoint}>
-          <Text style={styles.bulletText}>5. Alerts are sent based on your usage according to the limit that you have set.</Text>
-        </View>
-      </View>
+        <LinearGradient
+          colors={['#F0F8FF', '#ADD8E6']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          style={[styles.instructionsCard, { shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.5, shadowRadius: 2, elevation: 5 }]}
+        >
+          <View>
+            <Text style={styles.cardTitle}>Instructions:</Text>
+            <View style={styles.bulletPoint}>
+              <Text style={styles.bulletText}>1. Here you can set plans by choosing the units under which you intend to reduce consumption.</Text>
+            </View>
+            <View style={styles.bulletPoint}>
+              <Text style={styles.bulletText}>2. Select the appropriate units by checking the corresponding price it produces.</Text>
+            </View>
+            <View style={styles.bulletPoint}>
+              <Text style={styles.bulletText}>3. You can add the email address to which the alerts should be sent in the settings tab.</Text>
+            </View>
+            <View style={styles.bulletPoint}>
+              <Text style={styles.bulletText}>4. Alerts will be sent as notifications as well as through the email address.</Text>
+            </View>
+            <View style={styles.bulletPoint}>
+              <Text style={styles.bulletText}>5. Alerts are sent based on your usage according to the limit that you have set.</Text>
+            </View>
+          </View>
+        </LinearGradient>
       </View>
     </View>
   );
@@ -123,12 +129,11 @@ const Plans = () => {
 
 const styles = StyleSheet.create({
   outerContainer: {
-    
     borderRadius: 10,
     paddingVertical: 10,
-    paddingHorizontal: 20, // Add side padding
-    paddingTop: 30, // Add top padding
-    marginBottom: 20, // Reduce bottom margin
+    paddingHorizontal: 20,
+    paddingTop: 30,
+    marginBottom: 20,
   },
   innerContainer: {
     alignItems: 'center',
@@ -146,14 +151,18 @@ const styles = StyleSheet.create({
     fontSize: 48,
     fontWeight: 'bold',
   },
-  triangleText: {
-    fontWeight: 'bold',
-  },
-  triangleUp: {
-    fontSize: 36, // Adjust size as needed
-  },
+  // triangleText: {
+  //   fontWeight: 'bold',
+  // },
+  // triangleUp: {
+  //   fontSize: 36,
+  // },
+ stretch: {
+      width: 60,
+      height: 60
+ },
   triangleDown: {
-    fontSize: 36, // Adjust size as needed
+    fontSize: 36,
   },
   title: {
     fontSize: 20,
@@ -182,18 +191,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   instructionsCard: {
-    backgroundColor: '#ffffff',
     borderRadius: 10,
     padding: 20,
     marginTop: 50,
-    elevation: 5, // Add elevation for shadow effect
-    shadowColor: 'blue', // Shadow color
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
   },
   cardTitle: {
     fontSize: 18,
