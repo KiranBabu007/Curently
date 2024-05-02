@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
   selectedMinuteText: {
     fontSize: 48,
     fontWeight: 'bold',
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   // triangleText: {
   //   fontWeight: 'bold',
@@ -167,15 +167,15 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 20,
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   priceContainer: {
     marginTop: 20,
   },
   priceText: {
     fontSize: 20,
-    fontWeight: 'bold',
-    fontFamily: 'Montserrat-Variable',
+   
+    fontFamily: 'OpenSans-Variable',
   },
   buttonContainer: {
     flexDirection: 'row',
@@ -190,9 +190,9 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    fontWeight: 'bold',
+   
 
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
     color:"lightgrey"
 
   },
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   bulletPoint: {
     flexDirection: 'row',
@@ -215,8 +215,8 @@ const styles = StyleSheet.create({
   bulletText: {
     marginLeft: 10,
     fontSize: 16,
-    fontWeight: 'bold',
-    fontFamily: 'Montserrat-Variable',
+    
+    fontFamily: 'OpenSans-Variable',
   },
 });
 

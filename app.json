@@ -36,7 +36,8 @@
                    "./assets/fonts/Montserrat-VariableFont_wght.ttf",
                    "./assets/fonts/Montserrat-Italic-VariableFont_wght.ttf",
                    "./assets/fonts/OpenSans-VariableFont_wdth,wght.ttf",
-                   "./assets/fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf"]     
+                   "./assets/fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf",
+                  "./assets/fonts/Montserrat-Regular.ttf"]     
       }
     ]
   ],

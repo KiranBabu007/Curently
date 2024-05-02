@@ -24,10 +24,10 @@ const SplashScreen = () => (
 const App = () => {
   const [fontsLoaded] = useFonts({
     'Audiowide-Regular': require('../assets/fonts/Audiowide-Regular.ttf'),
-    'Montserrat-Variable': require('../assets/fonts/Montserrat-VariableFont_wght.ttf'),
+    'Montserrat-Variable': require('../assets/fonts/Montserrat-Regular.ttf'),
     'Monserrat-Italic': require('../assets/fonts/Montserrat-Italic-VariableFont_wght.ttf'),
     'OpenSans-Variable': require('../assets/fonts/OpenSans-VariableFont_wdth,wght.ttf'),
-    'OpenSnas-Italic': require('../assets/fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf'),
+    'OpenSans-Italic': require('../assets/fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf'),
   });
   const [showSplash, setShowSplash] = useState(true);
 

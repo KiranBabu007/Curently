@@ -181,13 +181,13 @@ const FormPage = () => {
             }
             return (
               <View key={key} style={styles.priceDetailContainer}>
-                <Text style={[styles.priceLabel, { color: '#0f0ade' }]}>{value.descr}</Text>
-                <Text style={[styles.priceValue, { color: '#0f0ade' }]}>{value.value}</Text>
+                <Text style={[styles.priceLabel, { color: '#0f0ade',fontFamily:"OpenSans-Variable" }]}>{value.descr}</Text>
+                <Text style={[styles.priceValue, { color: '#0f0ade',fontFamily:"OpenSans-Variable" }]}>{value.value}</Text>
               </View>
             );
           })}
           <View style={[styles.priceDetailContainer, styles.totalContainer]}>
-            <Text className="font-extrabold text-xl" style={[styles.priceLabel, { color: '#0f0ade' }]}>Total Amount:</Text>
+            <Text className="font-extrabold text-xl" style={[styles.priceLabel, { color: '#0f0ade' }]}>Total Amount</Text>
             <Text className="font-semibold " style={[styles.totalValue, { color: '#0f0ade' }]}>{`Rs ${responseData.result_data.tariff_values.bill_total.value}`}</Text>
           </View>
          </LinearGradient>
@@ -208,8 +208,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 25,
     marginBottom: 5,
-    fontWeight: 'bold',
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
     textAlign: 'center',
     paddingTop: 30,
     paddingBottom: 20,
@@ -223,10 +222,10 @@ const styles = StyleSheet.create({
   },
   inputLabel: {
     fontSize: 18,
-    fontWeight: 'bold',
+    
     marginRight: 10,
     paddingLeft: 10,
-    fontFamily: 'Montserrat-Variable', // Reduced padding
+    fontFamily: 'OpenSans-Variable', // Reduced padding
   },
   input: {
     flex: 1,
@@ -259,8 +258,8 @@ const styles = StyleSheet.create({
   checkboxText: {
     fontSize: 16,
     marginLeft: 5,
-    fontFamily: 'Montserrat-Variable',
-    fontWeight: 'bold',
+    fontFamily: 'OpenSans-Variable',
+    
   },
   checkedCheckbox: {
     backgroundColor: '#0f0ade',
@@ -282,8 +281,8 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     fontSize: 16,
-    fontWeight: 'bold',
-    fontFamily: 'Montserrat-Variable',
+    
+    fontFamily: 'OpenSans-Variable',
   },
   cardContainer: {
     width: '100%', 
@@ -294,18 +293,19 @@ const styles = StyleSheet.create({
   },
   cardText: {
     fontSize: 16,
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   priceDetailContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 2,
+    fontFamily: 'OpenSans-Variable',
   },
   cardTitle: {
     fontSize: 20,
-    fontWeight: 'bold',
+   
     marginBottom: 10,
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   totalContainer: {
     marginTop: 10,
@@ -315,8 +315,8 @@ const styles = StyleSheet.create({
   },
   totalValue: {
     fontSize: 18,
-    fontWeight: 'bold',
-    fontFamily: 'Montserrat-Variable',
+    
+    fontFamily: 'OpenSans-Variable',
   },
   loadingContainer: {
     flex: 1,
@@ -331,12 +331,12 @@ const styles = StyleSheet.create({
   itemHeader: {
     fontSize: 16,
     fontWeight: 'bold',
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   priceHeader: {
     fontSize: 16,
     fontWeight: 'bold',
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
 });
 

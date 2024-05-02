@@ -130,12 +130,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: '#333',
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   dataCardSubtitle: {
     fontSize: 16,
     color: '#666',
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   maxEnergyContainer: {
     flexDirection: 'row',
@@ -144,10 +144,10 @@ const styles = StyleSheet.create({
   },
   maxEnergyText: {
     fontSize: 24,
-    fontWeight: 'bold',
+    
     color: '#333',
     marginLeft: 10,
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   dataCardImage: {
     width: 200,
@@ -165,8 +165,8 @@ const styles = StyleSheet.create({
   },
   noDataText: {
     fontSize: 16,
-    fontWeight: 'bold',
-    fontFamily: 'Montserrat-Variable',
+    
+    fontFamily: 'OpenSans-Variable',
   },
   placeholderImage: {
     width: 300,

@@ -16,7 +16,6 @@ const SettingsScreen = () => {
     <View style={styles.container}>
       {settingsData.map((item, index) => (
         <TouchableOpacity onPress={()=>{  router.replace(`/Screens${item.href}`)}} key={index} style={styles.settingItem}>
-          
             <View style={styles.settingItemContent}>
               <Ionicons name={item.icon} size={24} color="#333" />
               <Text style={styles.settingLabel}>{item.label}</Text>
@@ -53,6 +52,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 16,
     fontSize: 16,
+    fontFamily: 'OpenSans-Variable',
   },
 });
 
