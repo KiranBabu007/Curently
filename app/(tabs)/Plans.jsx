@@ -43,7 +43,7 @@ const Plans = () => {
   };  
 
   const handleSetPrice = () => {
-    setPrice(selectedMinute * 0.1); 
+    // setPrice(selectedMinute * 0.1); 
     let dataToUpdate = doc(firestore,'limit','tyv0cGkSgFqqylJzHMyc');
     updateDoc(dataToUpdate,{
         limit: selectedMinute
