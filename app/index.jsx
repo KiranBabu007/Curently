@@ -49,9 +49,10 @@ const App = () => {
           style={styles.background}
           
         >
+          
           <View style={styles.container2}>
             <StatusBar style="auto" />
-
+<Text style={{top:75 , fontSize:18,fontStyle:"italic",fontWeight:"400"}}>Think Act Save</Text>
             <View style={styles.buttonsContainer}>
               <Link className='' href="/sign-in" style={styles.button}>Login</Link>
               <Link href="/sign-up" style={styles.button}>Sign Up</Link>

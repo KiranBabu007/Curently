@@ -5,7 +5,11 @@ import { collection, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { firestore } from '../../../firebaseConfig';
 import { router } from 'expo-router';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+<<<<<<< HEAD
 import { ImageBackground } from 'react-native';
+=======
+
+>>>>>>> 7b20576413b981ea9afd5f725b341ed3867a146e
 const Index = () => {
   const [userData, setUserData] = useState(null);
   const [phoneNumber, setPhoneNumber] = useState('');
