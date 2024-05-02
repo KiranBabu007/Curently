@@ -209,6 +209,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     marginBottom: 5,
     fontWeight: 'bold',
+    fontFamily: 'Montserrat-Variable',
     textAlign: 'center',
     paddingTop: 30,
     paddingBottom: 20,
@@ -222,9 +223,10 @@ const styles = StyleSheet.create({
   },
   inputLabel: {
     fontSize: 18,
-    fontWeight: '400',
+    fontWeight: 'bold',
     marginRight: 10,
-    paddingLeft: 10, // Reduced padding
+    paddingLeft: 10,
+    fontFamily: 'Montserrat-Variable', // Reduced padding
   },
   input: {
     flex: 1,
@@ -257,6 +259,8 @@ const styles = StyleSheet.create({
   checkboxText: {
     fontSize: 16,
     marginLeft: 5,
+    fontFamily: 'Montserrat-Variable',
+    fontWeight: 'bold',
   },
   checkedCheckbox: {
     backgroundColor: '#0f0ade',
@@ -279,6 +283,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
+    fontFamily: 'Montserrat-Variable',
   },
   cardContainer: {
     width: '100%', 
@@ -289,6 +294,7 @@ const styles = StyleSheet.create({
   },
   cardText: {
     fontSize: 16,
+    fontFamily: 'Montserrat-Variable',
   },
   priceDetailContainer: {
     flexDirection: 'row',
@@ -299,6 +305,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
+    fontFamily: 'Montserrat-Variable',
   },
   totalContainer: {
     marginTop: 10,
@@ -309,6 +316,7 @@ const styles = StyleSheet.create({
   totalValue: {
     fontSize: 18,
     fontWeight: 'bold',
+    fontFamily: 'Montserrat-Variable',
   },
   loadingContainer: {
     flex: 1,
@@ -323,10 +331,12 @@ const styles = StyleSheet.create({
   itemHeader: {
     fontSize: 16,
     fontWeight: 'bold',
+    fontFamily: 'Montserrat-Variable',
   },
   priceHeader: {
     fontSize: 16,
     fontWeight: 'bold',
+    fontFamily: 'Montserrat-Variable',
   },
 });
 

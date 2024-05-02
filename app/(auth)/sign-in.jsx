@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     fontWeight: "bold",
-    fontFamily: "sans-serif-light",
+    fontFamily: 'Montserrat-Variable',
     textAlign: "center",
     paddingVertical: 40,
     color: "black"
@@ -129,7 +129,8 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     fontWeight: "bold",
-    color: 'white'
+    color: 'white',
+    fontFamily: 'Montserrat-Variable',
   },
   footerText: {
     textAlign: "center",
@@ -138,7 +139,8 @@ const styles = StyleSheet.create({
   },
   signup: {
     color: "grey",
-    fontSize: 13
+    fontSize: 13,
+    fontFamily: 'Montserrat-Variable',
   },
   animation: {
     width: 300,

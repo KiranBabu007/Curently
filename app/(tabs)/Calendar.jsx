@@ -130,10 +130,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: '#333',
+    fontFamily: 'Montserrat-Variable',
   },
   dataCardSubtitle: {
     fontSize: 16,
     color: '#666',
+    fontFamily: 'Montserrat-Variable',
   },
   maxEnergyContainer: {
     flexDirection: 'row',
@@ -145,6 +147,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#333',
     marginLeft: 10,
+    fontFamily: 'Montserrat-Variable',
   },
   dataCardImage: {
     width: 200,
@@ -163,6 +166,7 @@ const styles = StyleSheet.create({
   noDataText: {
     fontSize: 16,
     fontWeight: 'bold',
+    fontFamily: 'Montserrat-Variable',
   },
   placeholderImage: {
     width: 300,

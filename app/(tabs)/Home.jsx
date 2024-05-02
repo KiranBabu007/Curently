@@ -194,8 +194,6 @@ emailjs
 }
 
 
-  
-
 return (
   <ScrollView style={styles.container}>
     <View style={styles.imageContainer}>
@@ -320,8 +318,8 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
     fontSize: 18,
-    fontWeight: '400',
-    fontFamily: 'Audiowide-Regular',
+    fontWeight: 'bold',
+    fontFamily: 'Montserrat-Variable',
     margin:10
   },
   currenttext: {
@@ -329,6 +327,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20,
     fontWeight: 'bold',
+    fontFamily: 'Montserrat-Variable',
   },
   imageContainer: {
     height: 200,
@@ -360,7 +359,8 @@ const styles = StyleSheet.create({
   },
   cardText: {
     fontSize: 16,
-
+    fontFamily: 'Montserrat-Variable',
+    fontWeight: 'bold',
   },
   outputBox: {
     padding: 1,
@@ -369,6 +369,7 @@ const styles = StyleSheet.create({
   outputText: {
     fontSize: 16,
     fontWeight: 'bold',
+    fontFamily: 'Montserrat-Variable',
   },
   roomsContainer: {
     marginLeft:16,
@@ -378,7 +379,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     marginBottom: 5,
-    
+    fontFamily: 'Montserrat-Variable',
   },
   roomCard: {
     backgroundColor: '#fff',
@@ -392,12 +393,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     margin:3,
-    fontStyle:'italic'
+    fontFamily: 'Monserrat-Italic',
   },
   roomConsumption: {
     fontSize: 14,
     color: '#666',
-    fontStyle:'italic'
+    fontWeight: 'bold',
+    fontFamily: 'Monserrat-Italic',
   },
   roomImageContainer: {
     borderTopLeftRadius: 8,

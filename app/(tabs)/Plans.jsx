@@ -150,6 +150,7 @@ const styles = StyleSheet.create({
   selectedMinuteText: {
     fontSize: 48,
     fontWeight: 'bold',
+    fontFamily: 'Montserrat-Variable',
   },
   // triangleText: {
   //   fontWeight: 'bold',
@@ -168,12 +169,15 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 20,
+    fontFamily: 'Montserrat-Variable',
   },
   priceContainer: {
     marginTop: 20,
   },
   priceText: {
     fontSize: 20,
+    fontWeight: 'bold',
+    fontFamily: 'Montserrat-Variable',
   },
   buttonContainer: {
     flexDirection: 'row',
@@ -189,6 +193,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
     fontWeight: 'bold',
+    fontFamily: 'Montserrat-Variable',
   },
   instructionsCard: {
     borderRadius: 10,
@@ -199,6 +204,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
+    fontFamily: 'Montserrat-Variable',
   },
   bulletPoint: {
     flexDirection: 'row',
@@ -208,6 +214,8 @@ const styles = StyleSheet.create({
   bulletText: {
     marginLeft: 10,
     fontSize: 16,
+    fontWeight: 'bold',
+    fontFamily: 'Montserrat-Variable',
   },
 });
 

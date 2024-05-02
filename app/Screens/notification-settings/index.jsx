@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+    fontFamily: 'Montserrat-Variable',
   },
   switchContainer: {
     flexDirection: 'row',
@@ -48,6 +49,8 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 18,
     marginRight: 10,
+    fontFamily: 'Montserrat-Variable',
+    fontWeight: 'bold',
   },
   backButton: {
     position: 'absolute',
@@ -59,7 +62,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'blue',
     fontWeight: 'bold',
-    marginTop: 20
+    marginTop: 20,
+    fontFamily: 'Montserrat-Variable',
   },
 });
 
