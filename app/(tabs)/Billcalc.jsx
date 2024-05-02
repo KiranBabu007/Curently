@@ -193,6 +193,7 @@ const FormPage = () => {
          </LinearGradient>
         )
       )}
+      
     </View>
   );
 };
