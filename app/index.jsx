@@ -3,7 +3,6 @@ import { StatusBar, ImageBackground } from 'react-native'; // Import ImageBackgr
 import { View, Text, StyleSheet, Image } from 'react-native'; // Import StyleSheet and Image
 import { Link } from 'expo-router';
 import { Video } from 'expo-av';
-import LottieView from 'lottie-react-native';
 
 const SplashScreen = () => (
   <View style={styles.container}>
