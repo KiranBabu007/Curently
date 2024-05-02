@@ -4,6 +4,8 @@ import { View, Text, StyleSheet, Image } from 'react-native'; // Import StyleShe
 import { Link } from 'expo-router';
 import { Video } from 'expo-av';
 import LottieView from 'lottie-react-native';
+import { useFonts } from 'expo-font';
+
 
 const SplashScreen = () => (
   <View style={styles.container}>
@@ -19,6 +21,13 @@ const SplashScreen = () => (
 );
 
 const App = () => {
+  const [fontsLoaded] = useFonts({
+    'Audiowide-Regular': require('../assets/fonts/Audiowide-Regular.ttf'),
+    'Montserrat-Variable': require('../assets/fonts/Montserrat-VariableFont_wght.ttf'),
+    'Montserrat-Italic': require('../assets/fonts/Montserrat-Italic-VariableFont_wght.ttf'),
+    'OpenSans-Variable': require('../assets/fonts/OpenSans-VariableFont_wdth,wght.ttf'),
+    'OpenSans-Italic': require('../assets/fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf')
+  });
   const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {

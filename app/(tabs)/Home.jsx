@@ -315,6 +315,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 18,
     fontWeight: '400',
+    fontFamily: 'Audiowide-Regular'
   },
   currenttext: {
     margin: 10,
