@@ -364,8 +364,9 @@ const styles = StyleSheet.create({
   },
   cardText: {
     fontSize: 16,
-    right:10,
-    fontWeight: 'light',
+    right:48,
+    fontWeight: 'bold',
+    
   },
   outputBox: {
     padding: 1,
