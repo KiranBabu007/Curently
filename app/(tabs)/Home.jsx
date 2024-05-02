@@ -24,6 +24,7 @@ const Home = () => {
   const collectionRef = collection(firestore, 'values');
   const dbInstance = collection(firestore,"limit");
   const [array,setArray] = useState([]);
+
  
   const [previousValue, setPreviousValue] = useState('');
   const dbInstance1 = collection(firestore,"emails");
@@ -122,7 +123,7 @@ const getlimit = async (data) => {
       getemail(percentageThreshold);
     }
   };
-
+  
   if (percentage > 100) {
     schedulePushNotificationOnce(100);
     notificationStatus = {};
@@ -154,7 +155,6 @@ const getlimit = async (data) => {
   else if (percentage > 10) {
     schedulePushNotificationOnce(10);
   }
-
 };
 
 const getemail = async (data) => {
@@ -176,8 +176,8 @@ const templateParams = {
 };
 
 emailjs
-  .send('service_2msy9m8', 'template_samev4z', templateParams, {
-    publicKey: '47jKhhhAvV9jqiifo',
+  .send('service_b10t7ds', 'template_ng26hw8', templateParams, {
+    publicKey: 'GbpViC0snr4prf6Zz',
     
   })
   .then(

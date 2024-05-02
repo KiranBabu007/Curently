@@ -26,8 +26,8 @@ const HelpAndSupportScreen = ({ navigation }) => {
     };
     
     emailjs
-      .send('service_2msy9m8', 'template_samev4z', templateParams, {
-        publicKey: '47jKhhhAvV9jqiifo',
+      .send('service_b10t7ds', 'template_ng26hw8', templateParams, {
+        publicKey: 'GbpViC0snr4prf6Zz',
         
       })
       .then(
