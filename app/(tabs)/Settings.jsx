@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Pressable, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Pressable, TouchableOpacity,Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 
@@ -26,6 +26,10 @@ const SettingsScreen = () => {
          
         </TouchableOpacity>
       ))}
+      <Image 
+        source={require('../../assets/settings.png')}
+        style={{ width: 380, height: 350 }}
+      />
     </View>
   );
 };
