@@ -20,6 +20,7 @@ Notifications.setNotificationHandler({
 const Home = () => {
   const [currentValue, setCurrentValue] = useState('');
   const [powerValue, setpowerValue] = useState('');
+  const [kwh,setkwhvalue] = useState('')
   const collectionRef = collection(firestore, 'values');
   const dbInstance = collection(firestore,"limit");
   const [array,setArray] = useState([]);
@@ -68,6 +69,7 @@ const Home = () => {
       if (data) {
         setCurrentValue(data.current);
         setpowerValue(data.power);
+        setkwhvalue(data.KWH)
         addDataToFirestore(data);
         getlimit(data);
         if (previousValue !== '' && (data.current - previousValue) > 3) {
@@ -208,15 +210,30 @@ return (
       <Text style={styles.text}>Current Consumption :</Text>
       <Text style={styles.currenttext}>{currentValue} A</Text>
     </View>
-    <View  style={styles.cardContainer}>
+    <View className=" flex" style={styles.cardContainer}>
       <View className="bg-slate-200"  style={styles.card}>
         <View   style={styles.cardContent}>
-          <Text style={styles.cardText}>Power Consumption:</Text>
+          <Text style={styles.cardText}>Power Consumption :</Text>
           <View style={styles.outputBox}>
             <Text style={styles.outputText}>{powerValue} W</Text>
           </View>
         </View>
+        
       </View>
+      
+    </View>
+
+    <View className="flex" style={styles.cardContainer}>
+      <View className="bg-slate-200"  style={styles.card}>
+        <View   style={styles.cardContent}>
+          <Text style={styles.cardText}>KWH :</Text>
+          <View style={styles.outputBox}>
+            <Text style={styles.outputText}>{kwh} Units</Text>
+          </View>
+        </View>
+        
+      </View>
+      
     </View>
     <View  style={styles.roomsContainer}>
 <Text  style={styles.roomsHeading}>Rooms</Text>
@@ -318,7 +335,7 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     alignItems: 'center',
-    marginVertical: 20,
+    marginVertical: 10,
   },
   card: {
  
@@ -331,14 +348,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    height:20
   },
   cardText: {
     fontSize: 16,
     fontWeight: 'bold',
   },
   outputBox: {
-   
-    padding: 10,
+    padding: 1,
     borderRadius: 5,
   },
   outputText: {

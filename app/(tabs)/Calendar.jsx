@@ -146,6 +146,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#333',
   },
+  noDataContainer: {
+    padding: 10
+  },
 });
 
 export default MyCalendar;

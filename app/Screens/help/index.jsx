@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput, Alert, SafeAreaView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { router } from 'expo-router';
+import emailjs from '@emailjs/react-native';
 
 const HelpAndSupportScreen = ({ navigation }) => {
  const [expandedFAQ, setExpandedFAQ] = useState(null);
  const [supportMessage, setSupportMessage] = useState('');
-
+ 
  const handleFAQToggle = (index) => {
    setExpandedFAQ(expandedFAQ === index ? null : index);
  };
@@ -17,6 +18,28 @@ const HelpAndSupportScreen = ({ navigation }) => {
    } else {
      // Implement logic to submit the support message to the development team
      console.log('Support Message:', supportMessage);
+     const templateParams = {
+      from_name: 'Curently',
+      message:supportMessage,
+      mail: "indrajithmundackal@gmail.com"
+      
+    };
+    
+    emailjs
+      .send('service_2msy9m8', 'template_samev4z', templateParams, {
+        publicKey: '47jKhhhAvV9jqiifo',
+        
+      })
+      .then(
+        (response) => {
+          console.log('SUCCESS!', response.status, response.text);
+          
+        },
+        (err) => {
+          console.log('FAILED...', err);
+        },
+      );
+    
      setSupportMessage('');
      Alert.alert('Success', 'Your message has been sent successfully.');
    }
@@ -48,7 +71,7 @@ const HelpAndSupportScreen = ({ navigation }) => {
  return (
    <SafeAreaView style={styles.container}>
      <View style={styles.header}>
-       <TouchableOpacity onPress={() => router.back()}>
+       <TouchableOpacity onPress={() => router.replace('/Settings')}>
          <Icon name="arrow-back" size={24} color="#2196F3" />
        </TouchableOpacity>
        <Text style={styles.headerTitle}>Help and Support</Text>

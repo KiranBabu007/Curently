@@ -45,6 +45,12 @@ const Plansetting = () => {
           <Text style={styles.buttonText}>Add</Text>
         </TouchableOpacity>
       </View>
+
+      <View style={styles.instructionsCard}>
+        <View style={styles.bulletPoint}>
+          <Text style={styles.bulletText}>Add the email to which the alerts should be sent.</Text>
+        </View>
+      </View>
     </SafeAreaView>
   );
 };
@@ -90,6 +96,35 @@ const styles = StyleSheet.create({
     top: 20,
     right: 20,
     marginTop: 20
+  },
+  instructionsCard: {
+    backgroundColor: '#ffffff',
+    borderRadius: 10,
+    padding: 20,
+    marginTop: 50,
+    elevation: 5, // Add elevation for shadow effect
+    shadowColor: 'blue', // Shadow color
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+  },
+  cardTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  bulletPoint: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 5,
+  },
+  bulletText: {
+    marginLeft: 10,
+    fontSize: 16,
+    fontWeight: 'bold'
   },
 });
 
