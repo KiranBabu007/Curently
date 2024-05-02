@@ -118,7 +118,8 @@ const styles = StyleSheet.create({
     fontFamily: "sans-serif-light",
     textAlign: "center",
     paddingVertical: 40,
-    color: "black"
+    color: "black",
+    fontFamily: 'Montserrat-Variable',
   },
   inputView: {
     width: "100%",
@@ -148,12 +149,15 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     fontWeight: "bold",
-    color: 'white'
+    color: 'white',
+    fontFamily: 'Montserrat-Variable',
   },
   errorText: {
     color: 'red',
     marginTop: 5,
     fontSize :10,
+    fontWeight:'bold',
+    fontFamily: 'Montserrat-Variable',
   }
 });
 
