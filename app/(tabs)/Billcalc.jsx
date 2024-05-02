@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet,ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet,ActivityIndicator, Image } from 'react-native';
 import axios from 'axios';
 
 import { app, database, firestore } from '../../firebaseConfig';
@@ -142,6 +142,20 @@ const FormPage = () => {
         </TouchableOpacity>
       </View>
 
+      {!responseData && (
+        <View className="m-10">
+          <Image
+         
+        source={require('../../assets/bill.png')}
+          style={styles.defaultImage}
+          resizeMode="contain"
+        />
+        <Text className="font-bold"> Enter Details and press Submit to get the bill.</Text>
+        </View>
+        
+      )}
+
+
       
       {isLoading ? (
         <View style={styles.loadingContainer}>
@@ -219,6 +233,11 @@ const styles = StyleSheet.create({
     borderRadius: 8, // Added border radius
     paddingHorizontal: 10,
     
+  },
+  defaultImage:{
+    
+    height:300,
+    width:300,
   },
   checkboxContainer: {
     flexDirection: 'row',

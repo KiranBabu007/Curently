@@ -153,14 +153,16 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   noDataContainer: {
+    flex: 1,
+    marginTop:80,
+    alignItems: 'center',
+    justifyContent: 'center',
     padding: 16,
     height:300
   },
   noDataText: {
     fontSize: 16,
     fontWeight: 'bold',
-    
-    
   },
   placeholderImage: {
     width: 300,
