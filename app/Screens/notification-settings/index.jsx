@@ -1,80 +1,104 @@
 import React, { useState } from 'react';
-import { View, Text, Switch, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Switch, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { router } from 'expo-router';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import { ImageBackground } from 'react-native';
 
-const Index = () => {
-  const [notificationEnabled, setNotificationEnabled] = useState(false);
+const NotificationSettingsScreen = () => {
+ 
 
-  const toggleNotification = () => {
-    setNotificationEnabled(prev => !prev);
+  // State variables for notification settings
+  const [isPushNotificationsEnabled, setIsPushNotificationsEnabled] = useState(true);
+  const [isEmailNotificationsEnabled, setIsEmailNotificationsEnabled] = useState(true);
+
+  const togglePushNotifications = (value) => {
+    setIsPushNotificationsEnabled(value);
+    // Update push notification settings in your app
   };
 
-  const handleBackButtonClick = () => {
-    // Execute your custom function logic here
-   router.replace('Settings')
-    // For example, you can close the notification settings modal
+  const toggleEmailNotifications = (value) => {
+    setIsEmailNotificationsEnabled(value);
+    // Update email notification settings in your app
   };
 
   return (
-    <ImageBackground
-    source={require('../../../assets/backk.jpg')}
-    style={styles.backgroundImage}
-  >
     <View style={styles.container}>
-      <Text style={styles.header}>Notification Settings</Text>
-      <TouchableOpacity style={styles.backButton} onPress={handleBackButtonClick}>
-      <Icon name="arrow-back" size={24} color="#2196F3" />
-      </TouchableOpacity>
-      <View style={styles.switchContainer}>
-        <Text style={styles.label}>Notification</Text>
-        <Switch value={notificationEnabled} onValueChange={toggleNotification} />
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => router.replace('Settings')}>
+          <Icon name="arrow-left" size={24} color="#333" />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>Notification Settings</Text>
       </View>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        {/* Push Notifications Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Push Notifications</Text>
+          <View style={styles.rowContainer}>
+            <Text style={styles.label}>Enable Push Notifications</Text>
+            <Switch
+              value={isPushNotificationsEnabled}
+              onValueChange={togglePushNotifications}
+            />
+          </View>
+        </View>
+
+        {/* Email Notifications Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Email Notifications</Text>
+          <View style={styles.rowContainer}>
+            <Text style={styles.label}>Enable Email Notifications</Text>
+            <Switch
+              value={isEmailNotificationsEnabled}
+              onValueChange={toggleEmailNotifications}
+            />
+          </View>
+        </View>
+      </ScrollView>
     </View>
-    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: '#F5F5F5',
+    marginTop: 40,
   },
   header: {
-    fontSize: 24,
-   
-    marginBottom: 20,
-    fontFamily: 'OpenSans-Variable',
-  },
-  switchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    backgroundColor: '#FFF',
+    borderBottomWidth: 1,
+    borderBottomColor: '#E5E5E5',
+  },
+  headerTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginLeft: 16,
+  },
+  scrollContainer: {
+    paddingVertical: 20,
+  },
+  section: {
+    marginVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: '#fff',
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  rowContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginVertical: 5,
   },
   label: {
-    fontSize: 18,
-    marginRight: 10,
-    fontFamily: 'OpenSans-Variable',
-   
-  },
-  backButton: {
-    position: 'absolute',
-    top: 30,
-    left: 10,
-    padding: 10,
-  },
-  backButtonText: {
     fontSize: 16,
-    color: 'blue',
-    fontWeight: 'bold',
-    marginTop: 20,
-    fontFamily: 'OpenSans-Variable',
-  },
-   backgroundImage: {
-    flex: 1,
-    resizeMode: 'cover',
   },
 });
 
-export default Index;
+export default NotificationSettingsScreen;

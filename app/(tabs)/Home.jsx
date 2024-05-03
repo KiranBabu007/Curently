@@ -362,9 +362,8 @@ const styles = StyleSheet.create({
   },
   cardText: {
     fontSize: 17,
-
-    right:48,
-    
+    position:"absolute",
+    left:55,
     fontFamily: 'OpenSans-Variable',
 
   },
