@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
    fontSize: 18,
    fontWeight: 'bold',
    marginLeft: 16,
-   fontFamily: 'Montserrat-Variable',
+   fontFamily: 'OpenSans-Variable',
  },
  helpSection: {
    marginBottom: 24,
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
    fontWeight: 'bold',
    color: '#2196F3',
    marginBottom: 16,
-   fontFamily: 'Montserrat-Variable',
+   fontFamily: 'OpenSans-Variable',
  },
  faqContainer: {
    backgroundColor: '#f5f5f5',
@@ -172,21 +172,21 @@ const styles = StyleSheet.create({
    fontWeight: 'bold',
    color: '#000',
    flex: 1,
-   fontFamily: 'Montserrat-Variable',
+   fontFamily: 'OpenSans-Variable',
  },
  faqAnswer: {
    fontSize: 14,
    color: '#000',
    marginTop: 8,
    fontWeight: 'bold',
-   fontFamily: 'Montserrat-Variable',
+   fontFamily: 'OpenSans-Variable',
  },
  supportDescription: {
    fontSize: 14,
    color: '#000',
    marginBottom: 8,
    fontWeight: 'bold',
-   fontFamily: 'Montserrat-Variable',
+   fontFamily: 'OpenSans-Variable',
  },
  supportInput: {
    height: 120,
@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
    color: '#fff',
    fontSize: 16,
    fontWeight: 'bold',
-   fontFamily: 'Montserrat-Variable',
+   fontFamily: 'OpenSans-Variable',
  },
 });
 

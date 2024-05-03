@@ -5,6 +5,10 @@ import { collection, addDoc,updateDoc,doc } from 'firebase/firestore';
 import { firestore } from '../../../firebaseConfig';
 import { router } from 'expo-router';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+<<<<<<< HEAD
+import { ImageBackground } from 'react-native';
+=======
+>>>>>>> 7b20576413b981ea9afd5f725b341ed3867a146e
 
 const Plansetting = () => {
   const [email, setEmail] = useState('');
@@ -30,6 +34,10 @@ const Plansetting = () => {
   };
 
   return (
+    <ImageBackground
+    source={require('../../../assets/backk.jpg')}
+    style={styles.backgroundImage}
+  >
     <SafeAreaView style={styles.container}>
       <TouchableOpacity onPress={handleBackButton} style={styles.backButton}>
       <Icon name="arrow-back" size={24} color="#2196F3" />
@@ -53,6 +61,7 @@ const Plansetting = () => {
         </View>
       </View>
     </SafeAreaView>
+    </ImageBackground>
   );
 };
 
@@ -68,7 +77,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 40,
     marginTop: 30,
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   inputContainer: {
     flexDirection: 'row',
@@ -91,7 +100,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
     fontWeight: 'bold',
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   backButton: {
     position: 'absolute',
@@ -117,7 +126,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   bulletPoint: {
     flexDirection: 'row',
@@ -128,7 +137,11 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     fontSize: 16,
     fontWeight: 'bold',
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
   },
 });
 

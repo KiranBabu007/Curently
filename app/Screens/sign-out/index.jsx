@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: 'center',
     color: '#333333',
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   buttonContainer: {
     width: '100%',

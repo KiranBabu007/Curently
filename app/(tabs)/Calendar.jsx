@@ -4,6 +4,7 @@ import { Calendar } from 'react-native-calendars';
 import { firestore } from '../../firebaseConfig';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { ImageBackground } from 'react-native';
 
 const MyCalendar = () => {
   const dbInstance = collection(firestore, 'values');
@@ -36,6 +37,10 @@ const MyCalendar = () => {
   };
 
   return (
+    <ImageBackground
+    source={require('../../assets/backk.jpg')}
+    style={styles.backgroundImage}
+  >
     <View style={styles.container}>
       <View style={styles.calendarContainer}>
         <Calendar
@@ -87,6 +92,7 @@ const MyCalendar = () => {
         </View>
       )}
     </View>
+    </ImageBackground>
   );
 };
 
@@ -175,6 +181,10 @@ const styles = StyleSheet.create({
     bottom:100,
     right: 10,
     
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
   },
 });
 

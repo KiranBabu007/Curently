@@ -5,7 +5,11 @@ import { collection, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { firestore } from '../../../firebaseConfig';
 import { router } from 'expo-router';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+<<<<<<< HEAD
+import { ImageBackground } from 'react-native';
+=======
 
+>>>>>>> 7b20576413b981ea9afd5f725b341ed3867a146e
 const Index = () => {
   const [userData, setUserData] = useState(null);
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -57,6 +61,10 @@ const Index = () => {
   };
 
   return (
+    <ImageBackground
+    source={require('../../../assets/backk.jpg')}
+    style={styles.backgroundImage}
+  >
     <View style={styles.container}>
       <Text style={styles.header}>Account Details</Text>
       <TouchableOpacity style={styles.backButton} onPress={handleBackButtonClick}>
@@ -87,6 +95,7 @@ const Index = () => {
         </TouchableOpacity>
       </View>
     </View>
+    </ImageBackground>
   );
 };
 
@@ -101,7 +110,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   infoContainer: {
     flexDirection: 'row',
@@ -112,11 +121,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     marginRight: 5,
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   text: {
     fontSize: 16,
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
     fontWeight:'600'
   },
   inputContainer: {
@@ -143,7 +152,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 16,
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   backButton: {
     position: 'absolute',
@@ -156,7 +165,11 @@ const styles = StyleSheet.create({
     color: 'blue',
     fontWeight: 'bold',
     marginTop: 20,
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
   },
 });
 
