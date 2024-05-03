@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 24,
-    fontWeight: 'bold',
+   
     marginBottom: 20,
     fontFamily: 'OpenSans-Variable',
   },
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginRight: 10,
     fontFamily: 'OpenSans-Variable',
-    fontWeight: 'bold',
+   
   },
   backButton: {
     position: 'absolute',

@@ -54,7 +54,7 @@ const Plansetting = () => {
 
       <View style={styles.instructionsCard}>
         <View style={styles.bulletPoint}>
-          <Text style={styles.bulletText}>Add the email to which the alerts should be sent.</Text>
+          <Text className="text-center" style={styles.bulletText}>Add the email to which the alerts should be sent.</Text>
         </View>
       </View>
     </SafeAreaView>
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontWeight: 'bold',
+    
     marginBottom: 40,
     marginTop: 30,
     fontFamily: 'OpenSans-Variable',
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    fontWeight: 'bold',
+    
     fontFamily: 'OpenSans-Variable',
   },
   backButton: {
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
+    
     marginBottom: 10,
     fontFamily: 'OpenSans-Variable',
   },
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
   bulletText: {
     marginLeft: 10,
     fontSize: 16,
-    fontWeight: 'bold',
+    
     fontFamily: 'OpenSans-Variable',
   },
   backgroundImage: {

@@ -105,8 +105,8 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 24,
-    fontWeight: 'bold',
     marginBottom: 20,
+    bottom:300,
     fontFamily: 'OpenSans-Variable',
   },
   infoContainer: {
@@ -116,7 +116,6 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 16,
-    fontWeight: 'bold',
     marginRight: 5,
     fontFamily: 'OpenSans-Variable',
   },
@@ -147,13 +146,14 @@ const styles = StyleSheet.create({
   },
   addButtonText: {
     color: 'white',
-    fontWeight: 'bold',
+    
     fontSize: 16,
     fontFamily: 'OpenSans-Variable',
   },
   backButton: {
     position: 'absolute',
-    top: 30,
+    top: 10,
+    marginTop:20,
     left: 10,
     padding: 10,
   },

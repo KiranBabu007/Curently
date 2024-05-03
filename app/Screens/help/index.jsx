@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
  },
  faqQuestion: {
    fontSize: 16,
-   fontWeight: 'bold',
+  
    color: '#000',
    flex: 1,
    fontFamily: 'OpenSans-Variable',
@@ -178,14 +178,12 @@ const styles = StyleSheet.create({
    fontSize: 14,
    color: '#000',
    marginTop: 8,
-   fontWeight: 'bold',
    fontFamily: 'OpenSans-Variable',
  },
  supportDescription: {
    fontSize: 14,
    color: '#000',
    marginBottom: 8,
-   fontWeight: 'bold',
    fontFamily: 'OpenSans-Variable',
  },
  supportInput: {
@@ -208,7 +206,7 @@ const styles = StyleSheet.create({
  sendButtonText: {
    color: '#fff',
    fontSize: 16,
-   fontWeight: 'bold',
+   
    fontFamily: 'OpenSans-Variable',
  },
 });
