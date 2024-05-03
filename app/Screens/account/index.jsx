@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import { getAuth } from 'firebase/auth';
 import { collection, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { firestore } from '../../../firebaseConfig';
@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { ImageBackground } from 'react-native';
 
 const Index = () => {
-  const [userData, setUserData] = useState(null);
+ 
   const [phoneNumber, setPhoneNumber] = useState('');
   const auth = getAuth();
   const currentUser = auth.currentUser;
@@ -57,41 +57,48 @@ const Index = () => {
     router.replace('/Settings')
   };
 
+  const renderItem = ({ item }) => (
+    <View style={styles.listItem}>
+      <Text style={styles.label}>{item.label}</Text>
+      <Text style={styles.text}>{item.value}</Text>
+    </View>
+  );
+
+  const userData = [
+    { label: 'Name', value: userData ? userData.name : 'Loading...' },
+    { label: 'Email', value: userData ? userData.email : 'Loading...' },
+    { label: 'Phone Number', value: userData ? userData.phoneNumber || 'Not provided' : 'Loading...' },
+  ];
+
   return (
     <ImageBackground
-    source={require('../../../assets/backk.jpg')}
-    style={styles.backgroundImage}
-  >
-    <View style={styles.container}>
-      <Text style={styles.header}>Account Details</Text>
-      <TouchableOpacity style={styles.backButton} onPress={handleBackButtonClick}>
-      <Icon name="arrow-back" size={24} color="#2196F3" />
-      </TouchableOpacity>
-      <View style={styles.infoContainer}>
-        <Text style={styles.label}>Name: </Text>
-        <Text style={styles.text}>{userData ? userData.name : 'Loading...'}</Text>
-      </View>
-      <View style={styles.infoContainer}>
-        <Text style={styles.label}>Email: </Text>
-        <Text style={styles.text}>{userData ? userData.email : 'Loading...'}</Text>
-      </View>
-      <View style={styles.infoContainer}>
-        <Text style={styles.label}>Phone Number: </Text>
-        <Text style={styles.text}>{userData ? userData.phoneNumber || 'Not provided' : 'Loading...'}</Text>
-      </View>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Phone Number"
-          value={phoneNumber}
-          onChangeText={setPhoneNumber}
-          keyboardType="phone-pad"
-        />
-        <TouchableOpacity style={styles.addButton} onPress={handleAddPhoneNumber}>
-          <Text style={styles.addButtonText}>Change</Text>
+      source={require('../../../assets/backk.jpg')}
+      style={styles.backgroundImage}
+    >
+      <View style={styles.container}>
+        <Text style={styles.header}>Account Details</Text>
+        <TouchableOpacity style={styles.backButton} onPress={handleBackButtonClick}>
+          <Icon name="arrow-back" size={24} color="#2196F3" />
         </TouchableOpacity>
+        <FlatList
+          data={userData}
+          renderItem={renderItem}
+          keyExtractor={(item, index) => index.toString()}
+          contentContainerStyle={styles.listContainer}
+        />
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder="Phone Number"
+            value={phoneNumber}
+            onChangeText={setPhoneNumber}
+            keyboardType="phone-pad"
+          />
+          <TouchableOpacity style={styles.addButton} onPress={handleAddPhoneNumber}>
+            <Text style={styles.addButtonText}>Change</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
     </ImageBackground>
   );
 };
@@ -102,28 +109,45 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingVertical:20
+    paddingVertical: 20,
   },
   header: {
     fontSize: 24,
     marginBottom: 20,
-    bottom:300,
+    bottom: 300,
     fontFamily: 'OpenSans-Variable',
   },
-  infoContainer: {
+  listContainer: {
+    marginBottom: 20,
+    marginRight:100,
+    marginTop:20
+  },
+  listItem: {
     flexDirection: 'row',
-    alignItems: 'center',
+    
     marginBottom: 10,
+    backgroundColor: '#fff',
+    padding: 10,
+    borderRadius: 8,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    
   },
   label: {
     fontSize: 16,
     marginRight: 5,
     fontFamily: 'OpenSans-Variable',
+    fontWeight: 'bold',
   },
   text: {
     fontSize: 16,
     fontFamily: 'OpenSans-Variable',
-    fontWeight:'600'
   },
   inputContainer: {
     flexDirection: 'row',
@@ -147,23 +171,15 @@ const styles = StyleSheet.create({
   },
   addButtonText: {
     color: 'white',
-    
     fontSize: 16,
     fontFamily: 'OpenSans-Variable',
   },
   backButton: {
     position: 'absolute',
     top: 10,
-    marginTop:20,
+    marginTop: 20,
     left: 10,
     padding: 10,
-  },
-  backButtonText: {
-    fontSize: 16,
-    color: 'blue',
-    fontWeight: 'bold',
-    marginTop: 20,
-    fontFamily: 'OpenSans-Variable',
   },
   backgroundImage: {
     flex: 1,
