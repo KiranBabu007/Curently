@@ -115,7 +115,7 @@ const Plans = () => {
               <Text style={styles.bulletText}>2. Select the appropriate units by checking the corresponding price it produces.</Text>
             </View>
             <View style={styles.bulletPoint}>
-              <Text style={styles.bulletText}>3. You can add the email address to which the alerts should be sent in the settings tab.</Text>
+              <Text  style={styles.bulletText}>3. You can add the email address to which the alerts should be sent in the settings tab.</Text>
             </View>
             <View style={styles.bulletPoint}>
               <Text style={styles.bulletText}>4. Alerts will be sent as notifications as well as through the email address.</Text>
@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
   bulletText: {
     marginLeft: 10,
     fontSize: 16,
-    
+    color:"grey",
     fontFamily: 'OpenSans-Variable',
   },
   backgroundImage: {

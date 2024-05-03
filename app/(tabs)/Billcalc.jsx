@@ -171,8 +171,8 @@ const FormPage = () => {
          >
           <Text style={[styles.cardTitle, { color: '#080e2c' }]}>Price Details</Text>
           <View style={styles.itemHeaderContainer}>
-   <Text style={[styles.itemHeader, { color: '#0f0ade' }]}>Item</Text>
-   <Text style={[styles.priceHeader, { color: '#0f0ade' }]}>Price</Text>
+   <Text style={[styles.itemHeader]}>Item</Text>
+   <Text style={[styles.priceHeader]}>Price</Text>
  </View>
           {Object.entries(responseData.result_data.tariff_values).map(([key, value]) => {
             // Skip rendering if the key is "bill_total"
@@ -181,14 +181,18 @@ const FormPage = () => {
             }
             return (
               <View key={key} style={styles.priceDetailContainer}>
-                <Text style={[styles.priceLabel, { color: '#0f0ade',fontFamily:"OpenSans-Variable" }]}>{value.descr}</Text>
-                <Text style={[styles.priceValue, { color: '#0f0ade',fontFamily:"OpenSans-Variable" }]}>{value.value}</Text>
+                <Text className=" text-slate-600" style={[styles.priceLabel, { fontFamily:"OpenSans-Variable" }]}>{value.descr}</Text>
+                <Text className=" text-slate-600" style={[styles.priceValue, { fontFamily:"OpenSans-Variable"}]}>{value.value}</Text>
               </View>
             );
           })}
           <View style={[styles.priceDetailContainer, styles.totalContainer]}>
-            <Text className="font-extrabold text-xl" style={[styles.priceLabel, { color: '#0f0ade' }]}>Total Amount</Text>
-            <Text className="font-semibold " style={[styles.totalValue, { color: '#0f0ade' }]}>{`Rs ${responseData.result_data.tariff_values.bill_total.value}`}</Text>
+          <Image  style={{width: 50, height: 50}}
+        source={require('../../assets/coin.png')}
+          resizeMode="cover"
+        />
+            <Text className="font-extrabold text-xl mt-2 right-8 text-slate-600" style={[styles.priceLabel, { fontFamily:'OpenSans-Variable' }]}>Total Amount</Text>
+            <Text className="font-semibold mt-2  text-slate-600 " style={[styles.totalValue, {  fontFamily:'OpenSans-Variable' }]}>{`Rs ${responseData.result_data.tariff_values.bill_total.value}`}</Text>
           </View>
          </LinearGradient>
         )
