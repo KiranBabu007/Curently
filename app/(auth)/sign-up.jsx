@@ -112,14 +112,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  innerContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "transparent",
+    paddingHorizontal: 40
+  },
   title: {
     fontSize: 30,
-    fontWeight: "bold",
-    fontFamily: "sans-serif-light",
+    
+    fontFamily: 'OpenSans-Italic',
     textAlign: "center",
     paddingVertical: 40,
-    color: "black",
-    fontFamily: 'Montserrat-Variable',
+    color: "black"
   },
   inputView: {
     width: "100%",
@@ -133,7 +139,8 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     color: 'black',
     backgroundColor: 'white',
-    marginBottom: 15
+    fontFamily:'OpenSans-Italic',
+    marginBottom: 15,
   },
   buttonView: {
     width: "100%",
@@ -148,16 +155,24 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 18,
-    fontWeight: "bold",
+    
     color: 'white',
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
-  errorText: {
-    color: 'red',
-    marginTop: 5,
-    fontSize :10,
-    fontWeight:'bold',
-    fontFamily: 'Montserrat-Variable',
+  footerText: {
+    textAlign: "center",
+    color: "black",
+    marginTop: 10,
+  },
+  signup: {
+    color: "grey",
+    fontSize: 13,
+    fontFamily: 'OpenSans-Variable',
+  },
+  animation: {
+    width: 300,
+    height: 300,
+    marginBottom: 20,
   }
 });
 

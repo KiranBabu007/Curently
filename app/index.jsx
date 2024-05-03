@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     color: 'black',
     fontSize: 16,
-    fontWeight: '900',
+    fontWeight:'600',
     textAlign: 'center',
     fontFamily: 'Montserrat-Variable',
   },

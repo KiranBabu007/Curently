@@ -95,8 +95,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 30,
-    fontWeight: "bold",
-    fontFamily: 'Montserrat-Variable',
+    
+    fontFamily: 'OpenSans-Italic',
     textAlign: "center",
     paddingVertical: 40,
     color: "black"
@@ -113,7 +113,8 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     color: 'black',
     backgroundColor: 'white',
-    marginBottom: 15
+    fontFamily:'OpenSans-Italic',
+    marginBottom: 15,
   },
   buttonView: {
     width: "100%",
@@ -128,9 +129,9 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 18,
-    fontWeight: "bold",
+    
     color: 'white',
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   footerText: {
     textAlign: "center",
@@ -140,7 +141,7 @@ const styles = StyleSheet.create({
   signup: {
     color: "grey",
     fontSize: 13,
-    fontFamily: 'Montserrat-Variable',
+    fontFamily: 'OpenSans-Variable',
   },
   animation: {
     width: 300,
