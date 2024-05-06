@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import { SafeAreaView, StyleSheet, Text, TextInput, View, Pressable } from 'react-native'
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { app } from '../../firebaseConfig'
+import {createUserWithEmailAndPassword } from "firebase/auth";
+import { app,auth } from '../../firebaseConfig'
 import { collection, doc, setDoc } from 'firebase/firestore';
 import { firestore } from '../../firebaseConfig';
 import LottieView from 'lottie-react-native';
 import { router } from 'expo-router';
 
+
 const Signup = () => {
-  const auth = getAuth();
+  // const auth = getAuth();
   const [name, setName] = useState(""); 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -33,7 +34,7 @@ const Signup = () => {
         })
         .then(() => {
           console.log("User data added successfully");
-          router.replace('/Home');
+          router.replace('/sign-in');
         })
         .catch((error) => {
           console.error('Error adding user data: ', error);

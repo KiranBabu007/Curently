@@ -70,7 +70,6 @@ const Home = () => {
         setCurrentValue(data.current);
         setpowerValue(data.power);
         setkwhvalue(data.KWH)
-        addDataToFirestore(data);
         getlimit(data);
         if (previousValue !== '' && (data.current - previousValue) > 3) {
           schedulePushNotification("Sudden increase in current detected");
@@ -84,7 +83,19 @@ const Home = () => {
       unsubscribe();
     };
   },  [previousValue]);
-
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const userDataRef = ref(database, '/UsersData/HLNSA5eBI5W5Qjew01pEla3kjjw2');
+      onValue(userDataRef, (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          addDataToFirestore(data);
+        }
+      });
+    }, 600000); // 300000 milliseconds = 5 minutes
+  
+    return () => clearInterval(interval); // Clean up the interval on component unmount
+  }, []);
   const addDataToFirestore = async (data) => {
     try {
       const currentDate = new Date();

@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { Alert, Button, Image, Pressable, SafeAreaView, StyleSheet, Switch, Text, TextInput, View } from 'react-native'
-import { getAuth,signInWithEmailAndPassword } from 'firebase/auth';
-import { app } from '../../firebaseConfig';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { app,auth } from '../../firebaseConfig';
 import LottieView from 'lottie-react-native';
 import { router } from 'expo-router';
 const Signin = () => {
-    const auth = getAuth();
+    // const auth = getAuth();
     const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);

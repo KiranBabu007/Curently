@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
-import { getAuth } from 'firebase/auth';
 import { collection, doc, getDoc, updateDoc } from 'firebase/firestore';
-import { firestore } from '../../../firebaseConfig';
+import { firestore,auth } from '../../../firebaseConfig';
 import { router } from 'expo-router';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { ImageBackground } from 'react-native';
@@ -10,7 +9,7 @@ import { ImageBackground } from 'react-native';
 const Index = () => {
   const [userData, setUserData] = useState(null);
   const [phoneNumber, setPhoneNumber] = useState('');
-  const auth = getAuth();
+  // const auth = getAuth();
   const currentUser = auth.currentUser;
 
   useEffect(() => {

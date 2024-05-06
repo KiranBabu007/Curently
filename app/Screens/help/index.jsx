@@ -19,9 +19,9 @@ const HelpAndSupportScreen = ({ navigation }) => {
      // Implement logic to submit the support message to the development team
      console.log('Support Message:', supportMessage);
      const templateParams = {
-      from_name: 'Curently',
+      from_name: 'User',
       message:supportMessage,
-      mail: "indrajithmundackal@gmail.com"
+      mail: "curentlyalert@gmail.com"
       
     };
     
