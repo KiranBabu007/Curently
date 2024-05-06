@@ -2,21 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import { getAuth } from 'firebase/auth';
 import { collection, doc, getDoc, updateDoc } from 'firebase/firestore';
-import { firestore,auth } from '../../../firebaseConfig';
+import { firestore, auth } from '../../../firebaseConfig';
 import { router } from 'expo-router';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { ImageBackground } from 'react-native';
 
 const Index = () => {
- 
   const [phoneNumber, setPhoneNumber] = useState('');
-  // const auth = getAuth();
+  const [userData, setUserData] = useState(null);
   const currentUser = auth.currentUser;
 
   useEffect(() => {
     if (currentUser) {
       const userEmail = currentUser.email;
-      // Get user data from Firestore using email as document ID
       const userDocRef = doc(collection(firestore, 'users'), userEmail);
       getDoc(userDocRef)
         .then((docSnapshot) => {
@@ -54,7 +52,7 @@ const Index = () => {
   };
 
   const handleBackButtonClick = () => {
-    router.replace('/Settings')
+    router.replace('/Settings');
   };
 
   const renderItem = ({ item }) => (
@@ -64,10 +62,11 @@ const Index = () => {
     </View>
   );
 
-  const userData = [
-    { label: 'Name', value: userData ? userData.name : 'Loading...' },
-    { label: 'Email', value: userData ? userData.email : 'Loading...' },
-    { label: 'Phone Number', value: userData ? userData.phoneNumber || 'Not provided' : 'Loading...' },
+  // Dynamically set userData values or use 'Loading...'
+  const userDataItems = [
+    { label: 'Name', value: userData ? (userData.name || 'Not provided') : 'Loading...' },
+    { label: 'Email', value: userData ? (userData.email || 'Not provided') : 'Loading...' },
+    { label: 'Phone Number', value: userData ? (userData.phoneNumber || 'Not provided') : 'Loading...' },
   ];
 
   return (
@@ -81,7 +80,7 @@ const Index = () => {
           <Icon name="arrow-back" size={24} color="#2196F3" />
         </TouchableOpacity>
         <FlatList
-          data={userData}
+          data={userDataItems}
           renderItem={renderItem}
           keyExtractor={(item, index) => index.toString()}
           contentContainerStyle={styles.listContainer}
@@ -119,16 +118,15 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     marginBottom: 20,
-    marginRight:100,
-    marginTop:20
+    marginRight: 100,
+    marginTop: 20,
+    width: 400
   },
   listItem: {
     flexDirection: 'row',
-    
     marginBottom: 10,
     backgroundColor: '#fff',
     padding: 10,
-    borderRadius: 8,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -137,7 +135,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    
   },
   label: {
     fontSize: 16,

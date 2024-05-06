@@ -23,11 +23,37 @@ const MyCalendar = () => {
       const q = query(dbInstance, where('date', '==', selectedDateUTC));
       const querySnapshot = await getDocs(q);
       if (querySnapshot.empty) {
-        console.log('No matching documents.');
+        console.log('No matching documents for the selected date.');
         setFetchedData(null);
       } else {
-        const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-        setFetchedData(data);
+        const selectedData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  
+        // Fetch data for the previous date
+        const previousDate = new Date(selectedDate);
+        previousDate.setDate(previousDate.getDate() - 1);
+        const previousDateUTC = previousDate.toISOString().substring(0, 10);
+        const previousQ = query(dbInstance, where('date', '==', previousDateUTC));
+        const previousQuerySnapshot = await getDocs(previousQ);
+        let previousData = [];
+        if (!previousQuerySnapshot.empty) {
+          previousData = previousQuerySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        }
+  
+        // Calculate maximum energy for the selected date
+        const maxEnergySelected = Math.max(...selectedData.map((item) => item.energy));
+  
+        // Calculate maximum energy for the previous date
+        const maxEnergyPrevious = previousData.length > 0 ? Math.max(...previousData.map((item) => item.energy)) : -Infinity;
+        
+        // Calculate the difference or use maxEnergySelected if no previous data
+        const difference = maxEnergyPrevious === -Infinity ? maxEnergySelected : maxEnergySelected - maxEnergyPrevious;
+        
+        setFetchedData({
+          selectedData,
+          maxEnergySelected,
+          maxEnergyPrevious,
+          difference
+        });
       }
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -35,6 +61,10 @@ const MyCalendar = () => {
       setIsLoading(false);
     }
   };
+  
+  // ... (rest of the code remains the same)
+  
+  
 
   return (
     <ImageBackground
@@ -68,26 +98,32 @@ const MyCalendar = () => {
       ) : (
         <View style={styles.dataContainer}>
           {fetchedData && 
-            <View style={styles.dataCardContainer}>
-              <Text className="font-bold text-2sm" style={styles.dataCardTitle}>
-                Energy Consumption Data
-              </Text>
-              <Text className="font-bold text-2sm" style={styles.dataCardSubtitle}>
-                for {selectedDate}
-              </Text>
-              <View>
-                <Image source={require('../../assets/calendarbulb.png')} style={styles.dataCardImage} />
-              </View>
-               
-              <View className="flex flex-row m-5 space-x-2" style={styles.maxEnergyContainer}>
-                
-                <Text className="font-extrabold text-xl" style={styles.maxEnergyText}>
-                  {Math.max(...fetchedData.map((item) => item.energy))} KwH  
+            <View style={styles.dataContainer}>
+            {fetchedData && fetchedData.selectedData && (
+              <View style={styles.dataCardContainer}>
+                <Text className="font-bold text-2sm" style={styles.dataCardTitle}>
+                  Energy Consumption Data
                 </Text>
-                <FontAwesome5 name="bolt" size={28} color="gold" />
+                <Text className="font-bold text-2sm" style={styles.dataCardSubtitle}>
+                  for {selectedDate}
+                </Text>
+                <View>
+                  <Image source={require('../../assets/calendarbulb.png')} style={styles.dataCardImage} />
+                </View>
+                         
+                
+          
+                <View className="flex flex-row m-5 space-x-2" style={styles.maxEnergyContainer}>
+                          
+                  <Text className="font-extrabold text-xl" style={styles.maxEnergyText}>
+                     {fetchedData.difference} KwH  
+                  </Text>
+                  <FontAwesome5 name="bolt" size={28} color="gold" />
+                </View>
+                       
               </View>
-             
-            </View>
+            )}
+          </View>
            }
         </View>
       )}
