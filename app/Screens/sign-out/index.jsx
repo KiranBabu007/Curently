@@ -43,15 +43,15 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 20,
+    
+    marginBottom: 40,
     textAlign: 'center',
     color: '#333333',
     fontFamily: 'OpenSans-Variable',
   },
   buttonContainer: {
     width: '100%',
-    marginVertical: 5,
+    marginVertical: 10,
   },
 });
 
