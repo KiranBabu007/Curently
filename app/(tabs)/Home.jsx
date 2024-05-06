@@ -258,7 +258,7 @@ return (
 <Text  style={styles.roomsHeading}>Rooms</Text>
 <ScrollView className=" pt-5 pb-5 pl-2 " horizontal={true} showsHorizontalScrollIndicator={false}>
 {rooms.map((room) => (
-  <View key={room.id} className="w-"  style={styles.roomCard}>
+  <View key={room.id} className="shadow-xl"  style={styles.roomCard}>
     <View style={styles.roomImageContainer}>
       <Image source={room.image} style={styles.roomImage} />
     </View>
@@ -404,6 +404,7 @@ const styles = StyleSheet.create({
     width: 260,
     height: 200,
     overflow: 'hidden', 
+    
   },
   roomName: {
     fontSize: 17,
@@ -427,7 +428,8 @@ const styles = StyleSheet.create({
   },
   roomInfo: {
     alignItems: 'center',
-    padding:6
+    padding:6,
+    
      // Add padding to separate image and info
   },
 });
