@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Text, ActivityIndicator, Image } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import { firestore } from '../../firebaseConfig';
@@ -12,21 +12,24 @@ const MyCalendar = () => {
   const [fetchedData, setFetchedData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  useEffect(() => {
+    if (selectedDate) {
+      getData();
+    }
+  }, [selectedDate]);
+
   const getData = async () => {
     setIsLoading(true);
     try {
-      if (!selectedDate) {
-        setIsLoading(false);
-        return;
-      }
-      const selectedDateUTC = new Date(selectedDate).toISOString().substring(0, 10);
-      const q = query(dbInstance, where('date', '==', selectedDateUTC));
+      // Fetch data for the selected date
+      const q = query(dbInstance, where('date', '==', selectedDate));
       const querySnapshot = await getDocs(q);
       if (querySnapshot.empty) {
         console.log('No matching documents for the selected date.');
         setFetchedData(null);
       } else {
         const selectedData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        const maxEnergySelected = Math.max(...selectedData.map((item) => item.energy));
   
         // Fetch data for the previous date
         const previousDate = new Date(selectedDate);
@@ -39,20 +42,16 @@ const MyCalendar = () => {
           previousData = previousQuerySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
         }
   
-        // Calculate maximum energy for the selected date
-        const maxEnergySelected = Math.max(...selectedData.map((item) => item.energy));
-  
         // Calculate maximum energy for the previous date
         const maxEnergyPrevious = previousData.length > 0 ? Math.max(...previousData.map((item) => item.energy)) : -Infinity;
-        
-        // Calculate the difference or use maxEnergySelected if no previous data
+  
         const difference = maxEnergyPrevious === -Infinity ? maxEnergySelected : maxEnergySelected - maxEnergyPrevious;
-        
+  
         setFetchedData({
           selectedData,
           maxEnergySelected,
           maxEnergyPrevious,
-          difference
+          difference,
         });
       }
     } catch (error) {
@@ -65,41 +64,41 @@ const MyCalendar = () => {
   // ... (rest of the code remains the same)
   
   
-
   return (
     <ImageBackground
-    source={require('../../assets/backk.jpg')}
-    style={styles.backgroundImage}
-  >
-    <View style={styles.container}>
-      <View style={styles.calendarContainer}>
-        <Calendar
-          onDayPress={(day) => {
-            console.log('selected day', day.dateString);
-            const selectedDateCT = new Date(day.dateString);
-            selectedDateCT.setHours(selectedDateCT.getHours() + 10);
-            setSelectedDate(selectedDateCT.toISOString().substring(0, 10));
-            getData();
-          }}
-          markedDates={{
-            [selectedDate]: { selected: true, selectedDotColor: 'orange' },
-          }}
-        />
-      </View>
+      source={require('../../assets/backk.jpg')}
+      style={styles.backgroundImage}
+    >
+      <View style={styles.container}>
+        <View style={styles.calendarContainer}>
+          <Calendar
+            onDayPress={(day) => {
+              console.log('selected day', day.dateString);
+              setSelectedDate(day.dateString);
+            }}
+            markedDates={{
+              [selectedDate]: { selected: true, selectedDotColor: 'orange' },
+            }}
+          />
+        </View>
 
-      {!selectedDate && <View  style={styles.noDataContainer}>
-             
-             <Text className="text-center m-8" style={styles.noDataText}>Click on any date to show the energy consumption data.</Text>
-             <Image source={require('../../assets/calendar.png')} style={styles.placeholderImage} />
-           </View>}
+        {!selectedDate && (
+          <View style={styles.noDataContainer}>
+            <Text className="text-center m-8" style={styles.noDataText}>
+              Click on any date to show the energy consumption data.
+            </Text>
+            <Image
+              source={require('../../assets/calendar.png')}
+              style={styles.placeholderImage}
+            />
+          </View>
+        )}
 
-      {isLoading ? (
-        <ActivityIndicator size="large" color="#00adf5" style={styles.activityIndicator} />
-      ) : (
-        <View style={styles.dataContainer}>
-          {fetchedData && 
-            <View style={styles.dataContainer}>
-            {fetchedData && fetchedData.selectedData && (
+        {isLoading ? (
+          <ActivityIndicator size="large" color="#00adf5" style={styles.activityIndicator} />
+        ) : (
+          <View style={styles.dataContainer}>
+            {fetchedData && (
               <View style={styles.dataCardContainer}>
                 <Text className="font-bold text-2sm" style={styles.dataCardTitle}>
                   Energy Consumption Data
@@ -108,26 +107,23 @@ const MyCalendar = () => {
                   for {selectedDate}
                 </Text>
                 <View>
-                  <Image source={require('../../assets/calendarbulb.png')} style={styles.dataCardImage} />
+                  <Image
+                    source={require('../../assets/calendarbulb.png')}
+                    style={styles.dataCardImage}
+                  />
                 </View>
-                         
-                
-          
+
                 <View className="flex flex-row m-5 space-x-2" style={styles.maxEnergyContainer}>
-                          
                   <Text className="font-extrabold text-xl" style={styles.maxEnergyText}>
-                     {fetchedData.difference} KwH  
+                    {fetchedData.difference} KwH
                   </Text>
                   <FontAwesome5 name="bolt" size={28} color="gold" />
                 </View>
-                       
               </View>
             )}
           </View>
-           }
-        </View>
-      )}
-    </View>
+        )}
+      </View>
     </ImageBackground>
   );
 };
