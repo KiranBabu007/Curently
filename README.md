@@ -11,7 +11,7 @@ Kiran Babu
 Sidharth Manikuttan
 
 Link to product walkthrough
-link to video:https://youtu.be/B9Kn5JUhBq4?si=SQ1ru-1kEi64e9sf
+link to video:https://drive.google.com/file/d/15xyNWzUTD7b-647VmbKJS0iH2k0Z_z5U/view?usp=sharing
 
 How it Works ?
 
