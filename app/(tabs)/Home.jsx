@@ -2,7 +2,7 @@ import React, { useEffect, useState,useRef } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView,Platform } from 'react-native';
 import { collection, addDoc, Timestamp,getDocs } from 'firebase/firestore';
 import { app, database, firestore ,auth} from '../../firebaseConfig';
-import { ref, onValue } from 'firebase/database';
+import { ref, onValue,get } from 'firebase/database';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 
@@ -63,7 +63,7 @@ const Home = () => {
 
   useEffect(() => {
     
-    const userDataRef = ref(database, '/UsersData/HLNSA5eBI5W5Qjew01pEla3kjjw2');
+    const userDataRef = ref(database, '/UsersData/3e1oU0GluXfp3u3gaZD43imgdI83');
     const unsubscribe = onValue(userDataRef, (snapshot) => {
       const data = snapshot.val();
       if (data) {
@@ -83,23 +83,37 @@ const Home = () => {
       unsubscribe();
     };
   },  [previousValue]);
+
+
+
   useEffect(() => {
+    const userDataRef = ref(database, '/UsersData/3e1oU0GluXfp3u3gaZD43imgdI83');
+    
     const interval = setInterval(() => {
-      const userDataRef = ref(database, '/UsersData/HLNSA5eBI5W5Qjew01pEla3kjjw2');
-      onValue(userDataRef, (snapshot) => {
+      // Get the data once
+      get(userDataRef).then((snapshot) => {
         const data = snapshot.val();
         if (data) {
           addDataToFirestore(data);
         }
+      }).catch((error) => {
+        console.error("Error fetching data:", error);
       });
-    }, 600000); // 300000 milliseconds = 5 minutes
+    }, 600000); // 600000 milliseconds = 10 minutes
   
-    return () => clearInterval(interval); // Clean up the interval on component unmount
+    // Clear the interval when the component unmounts
+    return () => clearInterval(interval);
   }, []);
+  
+    
+
+
   const addDataToFirestore = async (data) => {
     try {
       const currentDate = new Date();
-      const formattedDate = currentDate.toISOString().split('T')[0];
+      const formattedDate = currentDate.toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
+      
+      console.log(formattedDate);
       const docRef = await addDoc(collectionRef, {
         current: data.current,
         energy: data.KWH,
