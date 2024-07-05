@@ -13,28 +13,37 @@ const FormPage = () => {
   const [isOneMonth, setIsOneMonth] = useState(false);
   const [isTwoMonth, setIsTwoMonth] = useState(false);
   const [responseData, setResponseData] = useState(null);
-  const [kwh,setkwh] =useState() 
-  const [consumed,setconsumed] =useState(false) // State to store the response data
-
+  const [kwh, setkwh] = useState();
+  const [consumed, setconsumed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isValidSelection, setIsValidSelection] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   const handleOneMonthPress = () => {
-    setIsOneMonth(!isOneMonth);
+    setIsOneMonth(true);
     setIsTwoMonth(false);
+    setIsValidSelection(true);
+    setShowError(false);
   };
 
   const handleTwoMonthPress = () => {
-    setIsTwoMonth(!isTwoMonth);
+    setIsTwoMonth(true);
     setIsOneMonth(false);
+    setIsValidSelection(true);
+    setShowError(false);
   };
 
   const handleSubmit = () => {
+    if (!isValidSelection) {
+      setShowError(true);
+      return;
+    }
+    setShowError(false);
     setIsLoading(true);
     console.log("Units Consumed:", unitsConsumed);
     console.log("One Month:", isOneMonth);
     console.log("Two Month:", isTwoMonth);
 
-    
     const frequency = isOneMonth ? 1 : isTwoMonth ? 2 : 0;
     const data = `tariff_id=1&purpose_id=15&frequency=${frequency}&WNL=${unitsConsumed}&phase=1&load=`;
 
@@ -67,25 +76,25 @@ const FormPage = () => {
       .then((response) => {
         console.log(JSON.stringify(response.data));
         setResponseData(response.data);
-        setIsLoading(false); // Store the response data in state
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log(error);
         setIsLoading(false);
       });
   };
-  const handlekwh =()=>{
-    setUnitsConsumed(kwh)
-    setconsumed(!consumed)
-  }
+
+  const handlekwh = () => {
+    setUnitsConsumed(kwh);
+    setconsumed(!consumed);
+  };
 
   useEffect(() => {
-    
     const userDataRef = ref(database, '/UsersData/HLNSA5eBI5W5Qjew01pEla3kjjw2');
     const unsubscribe = onValue(userDataRef, (snapshot) => {
       const data = snapshot.val();
       if (data) {
-        setkwh(data.KWH)
+        setkwh(data.KWH);
       }
     });
     return () => {
@@ -98,111 +107,111 @@ const FormPage = () => {
       source={require('../../assets/backk.jpg')}
       style={styles.backgroundImage}
     >
-    <View style={styles.container}>
-    
-      <Text style={styles.label}>Bill Calculator</Text>
-      <View style={styles.inputContainer}>
-        <Text style={styles.inputLabel}>Consumed Units</Text>
-        <TextInput
-          style={styles.input}
-          value={unitsConsumed.toString()}
-          onChangeText={setUnitsConsumed}
-          keyboardType="numeric"
-          editable={!consumed}
-          
-        />
-      </View> 
-      <View>
-      <TouchableOpacity className="mb-6" style={[styles.checkbox, consumed && styles.checkedCheckbox, { borderColor: '#ADD8E6' }]}
-      onPress={handlekwh}><Text style={[styles.checkboxText,
-        consumed && styles.checkedCheckboxText,]}>Use Current Consumed Units</Text>
-      </TouchableOpacity>
-      </View>
-      
-      <View style={styles.checkboxContainer}>
-
-        <TouchableOpacity
-          style={[styles.checkbox, isOneMonth && styles.checkedCheckbox, { borderColor: '#ADD8E6' }]}
-          onPress={handleOneMonthPress}
-        >
-          <Text style={[
-      styles.checkboxText,
-      isOneMonth && styles.checkedCheckboxText,
-    ]}>One Month</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.checkbox, isTwoMonth && styles.checkedCheckbox, { borderColor: '#ADD8E6' }]}
-          onPress={handleTwoMonthPress}
-        >
-          <Text style={[
-      styles.checkboxText,
-      isTwoMonth && styles.checkedCheckboxText,
-    ]}>Two Month</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-          <Text style={styles.buttonText}>Submit</Text>
-        </TouchableOpacity>
-      </View>
-
-      {!responseData && (
-        <View className="m-10">
-          <Image
-         
-        source={require('../../assets/bill.png')}
-          style={styles.defaultImage}
-          resizeMode="contain"
-        />
-        <Text className="mt-5 text-2md font-light"> Enter Details and press Submit to get the bill.</Text>
+      <View style={styles.container}>
+        <Text style={styles.label}>Bill Calculator</Text>
+        <View style={styles.inputContainer}>
+          <Text style={styles.inputLabel}>Consumed Units</Text>
+          <TextInput
+            style={styles.input}
+            value={unitsConsumed.toString()}
+            onChangeText={setUnitsConsumed}
+            keyboardType="numeric"
+            editable={!consumed}
+          />
+        </View> 
+        <View>
+          <TouchableOpacity 
+            className="mb-6" 
+            style={[styles.checkbox, consumed && styles.checkedCheckbox, { borderColor: '#ADD8E6' }]}
+            onPress={handlekwh}
+          >
+            <Text style={[styles.checkboxText, consumed && styles.checkedCheckboxText]}>
+              Use Current Consumed Units
+            </Text>
+          </TouchableOpacity>
         </View>
         
-      )}
+        <View style={styles.checkboxContainer}>
+          <TouchableOpacity
+            style={[styles.checkbox, isOneMonth && styles.checkedCheckbox, { borderColor: '#ADD8E6' }]}
+            onPress={handleOneMonthPress}
+          >
+            <Text style={[styles.checkboxText, isOneMonth && styles.checkedCheckboxText]}>One Month</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.checkbox, isTwoMonth && styles.checkedCheckbox, { borderColor: '#ADD8E6' }]}
+            onPress={handleTwoMonthPress}
+          >
+            <Text style={[styles.checkboxText, isTwoMonth && styles.checkedCheckboxText]}>Two Month</Text>
+          </TouchableOpacity>
+        </View>
 
+        {showError && (
+          <Text style={styles.errorText}>Please select either One Month or Two Month</Text>
+        )}
 
-      
-      {isLoading ? (
-        <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#6A5ACD" />
-      </View>// Show activity indicator while loading
-      ) : (
-        responseData && (
-          <LinearGradient
-          colors={['#F0F8FF', '#ADD8E6']}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-          style={[styles.cardContainer, { shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.5, shadowRadius: 2, elevation: 5 }]}
-         >
-          <Text style={[styles.cardTitle, { color: '#080e2c' }]}>Price Details</Text>
-          <View style={styles.itemHeaderContainer}>
-   <Text style={[styles.itemHeader]}>Item</Text>
-   <Text style={[styles.priceHeader]}>Price</Text>
- </View>
-          {Object.entries(responseData.result_data.tariff_values).map(([key, value]) => {
-            // Skip rendering if the key is "bill_total"
-            if (key === "bill_total") {
-              return null;
-            }
-            return (
-              <View key={key} style={styles.priceDetailContainer}>
-                <Text className=" text-slate-600" style={[styles.priceLabel, { fontFamily:"OpenSans-Variable" }]}>{value.descr}</Text>
-                <Text className=" text-slate-600" style={[styles.priceValue, { fontFamily:"OpenSans-Variable"}]}>{value.value}</Text>
-              </View>
-            );
-          })}
-          <View style={[styles.priceDetailContainer, styles.totalContainer]}>
-          <Image  style={{width: 50, height: 50}}
-        source={require('../../assets/coin.png')}
-          resizeMode="cover"
-        />
-            <Text className="font-extrabold text-xl mt-2 right-8 text-slate-600" style={[styles.priceLabel, { fontFamily:'OpenSans-Variable' }]}>Total Amount</Text>
-            <Text className="font-semibold mt-2  text-slate-600 " style={[styles.totalValue, {  fontFamily:'OpenSans-Variable' }]}>{`Rs ${responseData.result_data.tariff_values.bill_total.value}`}</Text>
-          </View>
-         </LinearGradient>
-        )
-      )}
-      
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity 
+            style={[styles.button, !isValidSelection && styles.disabledButton]} 
+            onPress={handleSubmit}
+            disabled={!isValidSelection}
+          >
+            <Text style={styles.buttonText}>Submit</Text>
+          </TouchableOpacity>
+        </View>
+
+        {!isLoading && !responseData && (
+  <View className="m-10">
+    <Image
+      source={require('../../assets/bill.png')}
+      style={styles.defaultImage}
+      resizeMode="contain"
+    />
+    <Text className="mt-5 text-2md font-light">Enter Details and press Submit to get the bill.</Text>
+  </View>
+)}
+
+{isLoading && (
+  <View style={styles.loadingContainer}>
+    <ActivityIndicator size="large" color="#6A5ACD" />
+  </View>
+)}
+
+{!isLoading && responseData && (
+  <LinearGradient
+    colors={['#F0F8FF', '#ADD8E6']}
+    start={{ x: 0, y: 0 }}
+    end={{ x: 1, y: 0 }}
+    style={[styles.cardContainer, { shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.5, shadowRadius: 2, elevation: 5 }]}
+  >
+    <Text style={[styles.cardTitle, { color: '#080e2c' }]}>Price Details</Text>
+    <View style={styles.itemHeaderContainer}>
+      <Text style={[styles.itemHeader]}>Item</Text>
+      <Text style={[styles.priceHeader]}>Price</Text>
     </View>
+    {Object.entries(responseData.result_data.tariff_values).map(([key, value]) => {
+      if (key === "bill_total") {
+        return null;
+      }
+      return (
+        <View key={key} style={styles.priceDetailContainer}>
+          <Text className="text-slate-600" style={[styles.priceLabel, { fontFamily:"OpenSans-Variable" }]}>{value.descr}</Text>
+          <Text className="text-slate-600" style={[styles.priceValue, { fontFamily:"OpenSans-Variable"}]}>{value.value}</Text>
+        </View>
+      );
+    })}
+    <View style={[styles.priceDetailContainer, styles.totalContainer]}>
+      <Image  
+        style={{width: 50, height: 50}}
+        source={require('../../assets/coin.png')}
+        resizeMode="cover"
+      />
+      <Text className="font-extrabold text-xl mt-2 right-8 text-slate-600" style={[styles.priceLabel, { fontFamily:'OpenSans-Variable' }]}>Total Amount</Text>
+      <Text className="font-semibold mt-2 text-slate-600" style={[styles.totalValue, { fontFamily:'OpenSans-Variable' }]}>{`Rs ${responseData.result_data.tariff_values.bill_total.value}`}</Text>
+    </View>
+  </LinearGradient>
+)}
+      </View>
     </ImageBackground>
   );
 };
@@ -350,6 +359,14 @@ const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     resizeMode: 'cover',
+  },
+  errorText: {
+    color: 'red',
+    marginBottom: 10,
+    fontFamily: 'OpenSans-Variable',
+  },
+  disabledButton: {
+    backgroundColor: '#ccc',
   },
 });
 
