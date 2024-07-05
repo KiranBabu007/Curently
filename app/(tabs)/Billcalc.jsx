@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet,ActivityIndicator, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet,ActivityIndicator, Image, ImageBackground } from 'react-native';
 import axios from 'axios';
 
 import { app, database, firestore } from '../../firebaseConfig';
@@ -94,6 +94,10 @@ const FormPage = () => {
   }, []);
 
   return (
+    <ImageBackground
+      source={require('../../assets/backk.jpg')}
+      style={styles.backgroundImage}
+    >
     <View style={styles.container}>
     
       <Text style={styles.label}>Bill Calculator</Text>
@@ -199,13 +203,14 @@ const FormPage = () => {
       )}
       
     </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8FDFE',
+   
     alignItems: 'center',
     paddingHorizontal: 20, // Added horizontal padding
   },
@@ -341,6 +346,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     fontFamily: 'OpenSans-Variable',
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
   },
 });
 

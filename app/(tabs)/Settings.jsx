@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Pressable, TouchableOpacity,Image } from 'react-native';
+import { View, Text, StyleSheet, Pressable, TouchableOpacity,Image, ImageBackground } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 
@@ -13,6 +13,10 @@ const SettingsScreen = () => {
   ];
 
   return (
+    <ImageBackground
+      source={require('../../assets/backk.jpg')}
+      style={styles.backgroundImage}
+    >
     <View style={styles.container}>
       {settingsData.map((item, index) => (
         <TouchableOpacity onPress={()=>{  router.replace(`/Screens${item.href}`)}} key={index} style={styles.settingItem}>
@@ -29,14 +33,14 @@ const SettingsScreen = () => {
         source={require('../../assets/settings.png')}
         style={{ width: 250, height: 300 }}
       />
-    </View>
+    </View></ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+  
     paddingHorizontal: 16,
   },
   settingItem: {
@@ -53,6 +57,10 @@ const styles = StyleSheet.create({
     marginLeft: 16,
     fontSize: 16,
     fontFamily: 'OpenSans-Variable',
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
   },
 });
 

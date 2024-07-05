@@ -83,19 +83,19 @@ const Home = () => {
       unsubscribe();
     };
   },  [previousValue]);
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const userDataRef = ref(database, '/UsersData/HLNSA5eBI5W5Qjew01pEla3kjjw2');
-      onValue(userDataRef, (snapshot) => {
-        const data = snapshot.val();
-        if (data) {
-          addDataToFirestore(data);
-        }
-      });
-    }, 600000); // 300000 milliseconds = 5 minutes
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     const userDataRef = ref(database, '/UsersData/HLNSA5eBI5W5Qjew01pEla3kjjw2');
+  //     onValue(userDataRef, (snapshot) => {
+  //       const data = snapshot.val();
+  //       if (data) {
+  //         addDataToFirestore(data);
+  //       }
+  //     });
+  //   }, 600000); // 300000 milliseconds = 5 minutes
   
-    return () => clearInterval(interval); // Clean up the interval on component unmount
-  }, []);
+  //   return () => clearInterval(interval); // Clean up the interval on component unmount
+  // }, []);
   const addDataToFirestore = async (data) => {
     try {
       const currentDate = new Date();
