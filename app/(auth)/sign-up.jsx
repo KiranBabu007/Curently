@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { SafeAreaView, StyleSheet, Text, TextInput, View, Pressable } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, TextInput, View, Pressable,Alert } from 'react-native'
 import {createUserWithEmailAndPassword } from "firebase/auth";
 import { app,auth } from '../../firebaseConfig'
 import { collection, doc, setDoc } from 'firebase/firestore';
@@ -18,6 +18,12 @@ const Signup = () => {
   const usersCollectionRef = collection(firestore, 'users');
 
   const handleSignup = () => {
+    if (!email || !password || !name) {
+      // If either email or password is empty, show an alert
+      Alert.alert('Error', 'Please fill in name, email and password fields.');
+      return; // Don't proceed with login
+    }
+
     if (password.length < 6) {
       setPasswordError("Password must be at least 6 characters long");
       return;

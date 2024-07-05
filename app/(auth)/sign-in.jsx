@@ -11,6 +11,12 @@ const Signin = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = () => {
+    if (!email || !password) {
+      // If either email or password is empty, show an alert
+      Alert.alert('Error', 'Please fill in both email and password fields.');
+      return; // Don't proceed with login
+    }
+
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in 
