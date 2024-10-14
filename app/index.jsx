@@ -45,7 +45,7 @@ const App = () => {
         <SplashScreen />
       ) : (
         <ImageBackground // Use ImageBackground for the page background
-          source={require('../assets/Welcome.jpg')} // Provide the image source
+          source={require('../assets/welcome.jpg')} // Provide the image source
           style={styles.background}
           
         >

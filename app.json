@@ -22,7 +22,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.kiran07x.curently"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -30,17 +31,19 @@
     "plugins": [
       "expo-router",
       [
-      "expo-font",
-      {
-        "fonts" : ["./assets/fonts/Audiowide-Regular.ttf",
-                   "./assets/fonts/Montserrat-VariableFont_wght.ttf",
-                   "./assets/fonts/Montserrat-Italic-VariableFont_wght.ttf",
-                   "./assets/fonts/OpenSans-VariableFont_wdth,wght.ttf",
-                   "./assets/fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf",
-                  "./assets/fonts/Montserrat-Regular.ttf"]     
-      }
-    ]
-  ],
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Audiowide-Regular.ttf",
+            "./assets/fonts/Montserrat-VariableFont_wght.ttf",
+            "./assets/fonts/Montserrat-Italic-VariableFont_wght.ttf",
+            "./assets/fonts/OpenSans-VariableFont_wdth,wght.ttf",
+            "./assets/fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf",
+            "./assets/fonts/Montserrat-Regular.ttf"
+          ]
+        }
+      ]
+    ],
     "extra": {
       "router": {
         "origin": false
