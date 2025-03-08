@@ -1,25 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { StatusBar, ImageBackground } from 'react-native'; // Import ImageBackground
-import { View, Text, StyleSheet, Image } from 'react-native'; // Import StyleSheet and Image
+import { StatusBar, ImageBackground, View, Text, StyleSheet, Image } from 'react-native';
 import { Link } from 'expo-router';
-import { Video } from 'expo-av';
+import { useVideoPlayer, VideoView } from 'expo-video';
+import { useFonts } from 'expo-font'; // Add this import for useFonts
 
-import LottieView from 'lottie-react-native';
-import { useFonts } from 'expo-font';
+const SplashScreen = () => {
+  const player = useVideoPlayer(require('../assets/splash.mp4'), player => {
+    player.loop = true;
+    player.play();
+  });
 
-
-const SplashScreen = () => (
-  <View style={styles.container}>
-    <StatusBar style="auto" />
-    <Video
-      source={require('../assets/splash.mp4')}
-      style={{ width: '100%', height: '100%' }}
-      resizeMode="contain"
-      isLooping
-      shouldPlay
-    />
-  </View>
-);
+  return (
+    <View style={styles.container}>
+      <StatusBar style="auto" />
+      <VideoView 
+        style={{ width: '100%', height: '100%' }}
+        player={player}
+        resizeMode="contain"
+      />
+    </View>
+  );
+};
 
 const App = () => {
   const [fontsLoaded] = useFonts({
@@ -44,15 +45,13 @@ const App = () => {
       {showSplash ? (
         <SplashScreen />
       ) : (
-        <ImageBackground // Use ImageBackground for the page background
-          source={require('../assets/welcome.jpg')} // Provide the image source
+        <ImageBackground
+          source={require('../assets/welcome.jpg')}
           style={styles.background}
-          
         >
-          
           <View style={styles.container2}>
             <StatusBar style="auto" />
-<Text style={{top:75 , fontSize:18,fontStyle:"italic",fontWeight:"400"}}>Think Act Save</Text>
+            <Text style={{top:75, fontSize:18, fontStyle:"italic", fontWeight:"400"}}>Think Act Save</Text>
             <View style={styles.buttonsContainer}>
               <Link className='' href="/sign-in" style={styles.button}>Login</Link>
               <Link href="/sign-up" style={styles.button}>Sign Up</Link>
@@ -77,10 +76,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-end',
     backgroundColor: 'transparent',
-    paddingBottom:100 // Make the background transparent to show the ImageBackground
+    paddingBottom:100 
   },
   background: {
-    flex: 1,// Cover the entire screen
+    flex: 1,
     justifyContent: 'center',
   },
   buttonsContainer: {
