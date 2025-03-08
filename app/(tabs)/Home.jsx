@@ -35,9 +35,9 @@ const Home = () => {
   
 
   const rooms=[ 
-    { id: 1, name: 'Living Room', consumption: 120, image: require('../../assets/living_room.png') },
-    { id: 2, name: 'Kitchen', consumption: 80, image: require('../../assets/kitchen.png') },
-    { id: 3, name: 'Dining Room', consumption: 60, image: require('../../assets/dining.png') },
+    { id: 1, name: 'Living Room', consumption: 120, image: require('../../assets/living.jpg') },
+    { id: 2, name: 'Kitchen', consumption: 80, image: require('../../assets/kitchen.jpg') },
+    { id: 3, name: 'Dining Room', consumption: 60, image: require('../../assets/dining.jpg') },
     { id: 4, name: 'Bed Room', consumption: 40, image: require('../../assets/bed.jpg') },
     { id: 5, name: 'Bath Room', consumption: 40, image: require('../../assets/bath.jpg') },
   ]
