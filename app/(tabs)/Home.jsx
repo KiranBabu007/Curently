@@ -214,7 +214,7 @@ return (
   <ScrollView style={styles.container}>
     <View style={styles.imageContainer}>
       <Image
-        source={require('../../assets/home.png')}
+        source={require('../../assets/home.jpg')}
         style={styles.image}
         resizeMode="contain"
       />
@@ -230,7 +230,7 @@ return (
       <View className="bg-slate-200"  style={styles.card}>
         <View   style={styles.cardContent}>
         <Image  style={{width: 50, height: 50}}
-        source={require('../../assets/power.png')}
+        source={require('../../assets/power.jpg')}
           resizeMode="cover"
         />
           <Text  style={[styles.cardText,{right:80}]}>Power  </Text>
@@ -247,7 +247,7 @@ return (
       <View className="bg-slate-200"  style={styles.card}>
         <View   style={styles.cardContent}>
         <Image  style={{width: 50, height: 50}}
-        source={require('../../assets/lightning.png')}
+        source={require('../../assets/lightning.jpg')}
           resizeMode="cover"
         />
           <Text style={styles.cardText}>KWH </Text>

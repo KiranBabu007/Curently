@@ -163,7 +163,7 @@ const FormPage = () => {
         {!isLoading && !responseData && (
   <View className="m-10">
     <Image
-      source={require('../../assets/bill.png')}
+      source={require('../../assets/bill.jng')}
       style={styles.defaultImage}
       resizeMode="contain"
     />
@@ -203,7 +203,7 @@ const FormPage = () => {
     <View style={[styles.priceDetailContainer, styles.totalContainer]}>
       <Image  
         style={{width: 50, height: 50}}
-        source={require('../../assets/coin.png')}
+        source={require('../../assets/coin.jpg')}
         resizeMode="cover"
       />
       <Text className="font-extrabold text-xl mt-2 right-8 text-slate-600" style={[styles.priceLabel, { fontFamily:'OpenSans-Variable' }]}>Total Amount</Text>

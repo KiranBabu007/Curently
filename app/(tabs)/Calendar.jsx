@@ -88,7 +88,7 @@ const MyCalendar = () => {
               Click on any date to show the energy consumption data.
             </Text>
             <Image
-              source={require('../../assets/calendar.png')}
+              source={require('../../assets/calendar.jpg')}
               style={styles.placeholderImage}
             />
           </View>
@@ -108,7 +108,7 @@ const MyCalendar = () => {
                 </Text>
                 <View>
                   <Image
-                    source={require('../../assets/calendarbulb.png')}
+                    source={require('../../assets/calendarbulb.jpg')}
                     style={styles.dataCardImage}
                   />
                 </View>

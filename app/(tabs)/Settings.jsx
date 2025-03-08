@@ -30,7 +30,7 @@ const SettingsScreen = () => {
       ))}
       <Image 
       className="ml-14 mt-8"
-        source={require('../../assets/settings.png')}
+        source={require('../../assets/settings.jpg')}
         style={{ width: 250, height: 300 }}
       />
     </View></ImageBackground>
