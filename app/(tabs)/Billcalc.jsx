@@ -163,7 +163,7 @@ const FormPage = () => {
         {!isLoading && !responseData && (
   <View className="m-10">
     <Image
-      source={require('../../assets/bill.jng')}
+      source={require('../../assets/bill.jpg')}
       style={styles.defaultImage}
       resizeMode="contain"
     />
